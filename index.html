@@ -1530,6 +1530,7 @@ function renderProduction(){
   const pc=document.getElementById("prodContent");
   if(prodSubView==="pipeline"&&focusD>=0){renderFocus();return;}
   if(prodSubView==="pipeline")renderPipelineView(pc);
+  else if(prodSubView==="network")renderNetworkView(pc);
   else if(prodSubView==="write")renderWriteView(pc);
   else if(prodSubView==="series")renderSeriesView(pc);
   else if(prodSubView==="bank")renderBankView(pc);
@@ -1563,6 +1564,7 @@ function renderProdTabs(){
   const el=document.getElementById("prodTabs");
   const tabs=[
     {id:"pipeline",label:"Pipeline",icon:"\u{1F4CB}"},
+    {id:"network",label:"R\u00e9seaux",icon:"\u{1F4F1}"},
     {id:"write",label:"\u00c9criture",icon:"\u270d\ufe0f"},
     {id:"series",label:"S\u00e9ries",icon:"\u{1F4DA}"},
     {id:"bank",label:"Banque",icon:"\u{1F4A1}"}
@@ -1720,6 +1722,81 @@ function renderFocus(){
   if(prevBtn)prevBtn.addEventListener("click",()=>{focusD=prevTask.d;focusI=prevTask.i;renderProduction();});
   const nextBtn=document.getElementById("focusNextBtn");
   if(nextBtn)nextBtn.addEventListener("click",()=>{focusD=nextTask.d;focusI=nextTask.i;renderProduction();});
+}
+
+// ===== NETWORK VIEW (Vue par réseau) =====
+function renderNetworkView(pc){
+  const prep=load(weekStart,"prep"),pub=load(weekStart,"pub"),notes=loadNotes(weekStart);
+  const isCur=wk(weekStart)===wk(getMonday(new Date())),tIdx=todayIdx();
+
+  let h='';
+  for(const [pid,pl] of Object.entries(P)){
+    // Collect all tasks for this platform this week
+    const tasks=[];
+    for(let d=0;d<7;d++)PLAN[d].forEach((t,i)=>{
+      if(t.p!==pid)return;
+      if(prodFilterSeries&&t.f!==prodFilterSeries)return;
+      const sd=getPrepSteps(prep,d,i);
+      const isPub=!!pub[d+"_"+i];
+      const allDone=sd.every(Boolean);
+      const prog=prepProgress(prep,d,i);
+      tasks.push({d,i,t,sd,isPub,allDone,prog});
+    });
+    if(!tasks.length)continue;
+
+    const done=tasks.filter(t=>t.allDone).length;
+    const published=tasks.filter(t=>t.isPub).length;
+
+    h+=`<div style="margin-bottom:20px">`;
+    h+=`<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;padding:10px 14px;background:var(--bg-surface);border:1px solid var(--border);border-radius:var(--radius)">`;
+    h+=`<div class="gauge-icon ${pl.cls}" style="width:28px;height:28px;border-radius:7px">${ICONS[pid]}</div>`;
+    h+=`<div style="flex:1"><div style="font-size:15px;font-weight:700">${pl.name}</div>`;
+    h+=`<div style="font-size:11px;color:var(--text-3)">${tasks.length} contenus \u00b7 ${done} pr\u00eat${done>1?"s":""} \u00b7 ${published} publi\u00e9${published>1?"s":""}</div></div>`;
+    // Progress bar
+    const pct=tasks.length>0?Math.round(done/tasks.length*100):0;
+    const barCol=pct>=75?"var(--green)":pct>=40?"var(--amber)":"var(--red)";
+    h+=`<div style="font-size:18px;font-weight:800;color:${barCol};min-width:40px;text-align:right">${pct}%</div>`;
+    h+=`</div>`;
+
+    // Task list for this platform
+    h+=`<div style="display:flex;flex-direction:column;gap:6px;padding-left:4px">`;
+    tasks.forEach(tk=>{
+      const s=tk.t.f?SERIES[tk.t.f]:null;
+      const fmtTag=s?`<span class="fmt-tag" style="background:${s.color}20;color:${s.color}">${s.name}</span>`:"";
+      const isToday=isCur&&tk.d===tIdx;
+      const isPast=isCur&&tk.d<tIdx;
+      let statusHtml="";
+      if(tk.isPub)statusHtml='<span class="task-badge pub">Publi\u00e9</span>';
+      else if(tk.allDone)statusHtml='<span class="task-badge ready">Pr\u00eat</span>';
+      else if(tk.prog.done>0)statusHtml=`<span class="task-badge wip">${tk.prog.done}/${tk.prog.total}</span>`;
+
+      h+=`<div class="kb-card ${pl.cls}" data-d="${tk.d}" data-i="${tk.i}" style="margin-bottom:0;border-left-width:3px${isToday?";border-color:var(--accent)":""}${isPast?";opacity:0.5":""}">`;
+      h+=`<div class="kb-card-top">`;
+      h+=`<div class="kb-card-lbl">${tk.t.l}</div>${fmtTag}`;
+      h+=`<div class="kb-card-day" style="margin-left:auto">${DAYS[tk.d]}${isToday?" \u2022":""}</div>`;
+      h+=statusHtml;
+      h+=`</div>`;
+      // Step dots
+      h+=`<div class="kb-card-dots" style="margin-top:4px">`;
+      tk.sd.forEach(st=>{h+=`<div class="kb-card-dot${st?" on":""}"></div>`;});
+      h+=`</div>`;
+      const nk=tk.d+"_"+tk.i;
+      if(notes[nk])h+=`<div class="kb-card-note">${notes[nk].substring(0,50)}</div>`;
+      h+=`</div>`;
+    });
+    h+=`</div></div>`;
+  }
+
+  pc.innerHTML=h;
+
+  // Click to focus
+  pc.querySelectorAll(".kb-card").forEach(el=>{
+    el.addEventListener("click",()=>{
+      focusD=+el.dataset.d;focusI=+el.dataset.i;
+      prodSubView="pipeline";
+      renderProduction();
+    });
+  });
 }
 
 // ===== WRITE VIEW =====
