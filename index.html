@@ -445,7 +445,7 @@
     .focus-nav button svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 
     /* SERIES STRIP */
-    .series-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 16px; }
+    .series-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 16px; }
     .series-card {
       background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius);
       padding: 14px 16px; cursor: pointer; transition: all 150ms var(--ease); position: relative; overflow: hidden;
@@ -480,7 +480,7 @@
     }
 
     /* WRITE VIEW */
-    .write-chooser { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; max-width: 640px; margin: 0 auto; }
+    .write-chooser { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; max-width: 780px; margin: 0 auto; }
     .write-choice {
       background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius);
       padding: 24px 16px; text-align: center; cursor: pointer; transition: all 150ms var(--ease);
@@ -758,7 +758,7 @@
       .kanban { grid-template-columns: repeat(2, 1fr); }
       .gauges { grid-template-columns: repeat(3, 1fr); }
       .calendar { grid-template-columns: repeat(4, 1fr); }
-      .series-strip { grid-template-columns: repeat(3, 1fr); }
+      .series-strip { grid-template-columns: repeat(2, 1fr); }
       .prod-filters { margin-left: 0; }
       .bottom { grid-template-columns: 1fr; }
     }
@@ -1036,7 +1036,7 @@ const ICONS = {
 // ============================================
 const P = {
   twitter:   { name: "X",         cls: "twitter",   dDays: 2,  wDays: 1 },
-  youtube:   { name: "YouTube",   cls: "youtube",   dDays: 21, wDays: 10 },
+  youtube:   { name: "YouTube",   cls: "youtube",   dDays: 10, wDays: 4 },
   instagram: { name: "Instagram", cls: "instagram", dDays: 5,  wDays: 3 },
   facebook:  { name: "Facebook",  cls: "facebook",  dDays: 5,  wDays: 3 },
   linkedin:  { name: "LinkedIn",  cls: "linkedin",  dDays: 7,  wDays: 4 },
@@ -1045,12 +1045,15 @@ const P = {
 
 // Content types → production steps
 const CT = {
-  tweet: ["Id\u00e9e","R\u00e9daction","Relecture"],
-  post:  ["Id\u00e9e","R\u00e9daction","Relecture"],
-  story: ["Id\u00e9e","Tournage","Montage"],
-  reel:  ["Id\u00e9e","Script","Tournage","Montage"],
-  short: ["Id\u00e9e","Script","Tournage","Montage"],
-  tiktok:["Id\u00e9e","Script","Tournage","Montage"],
+  tweet:    ["Id\u00e9e","R\u00e9daction","Relecture"],
+  thread:   ["Id\u00e9e","Recherche","R\u00e9daction","Relecture","Mise en forme"],
+  post:     ["Id\u00e9e","R\u00e9daction","Relecture"],
+  carousel: ["Id\u00e9e","Recherche","R\u00e9daction","Design"],
+  story:    ["Id\u00e9e","Tournage","Montage"],
+  reel:     ["Id\u00e9e","Script","Tournage","Montage"],
+  short:    ["Id\u00e9e","Script","Tournage","Montage"],
+  tiktok:   ["Id\u00e9e","Script","Tournage","Montage"],
+  long:     ["Id\u00e9e","Script","Tournage","Montage","Post-prod"],
 };
 
 // ============================================
@@ -1098,6 +1101,29 @@ const SERIES = {
     ],
     checklist:["Au moins 1 chiffre dans le post ?","Hook = premi\u00e8re ligne ?","Le\u00e7on actionable ?","Adapt\u00e9 \u00e0 la plateforme ?"]
   },
+  sante: {
+    name:"Sant\u00e9", full:"Sant\u00e9 & Tech M\u00e9dicale", color:"#EC4899", icon:"\u{1FA7A}",
+    frameworks:[
+      {id:"mythbust",name:"Myth Buster",steps:["Croyance populaire","Donn\u00e9es r\u00e9elles","Source","Nuance","Takeaway"]},
+      {id:"explain",name:"Explainer",steps:["Question patient","M\u00e9canisme simplifi\u00e9","Analogie","Implications","Action concr\u00e8te"]},
+      {id:"casestudy",name:"Case Study",steps:["Situation clinique","Probl\u00e8me","Approche","R\u00e9sultat","Le\u00e7on"]},
+      {id:"techsante",name:"Tech \u00d7 Sant\u00e9",steps:["Innovation","Probl\u00e8me r\u00e9solu","Comment \u00e7a marche","Limites","Vision"]}
+    ],
+    fields:[
+      {key:"hook",label:"Le Hook Sant\u00e9",ph:"Le fait surprenant ou la question que tout le monde se pose...",type:"input"},
+      {key:"claim",label:"L'Affirmation / Mythe",ph:"Ce que les gens croient (\u00e0 tort ou \u00e0 raison)...",type:"textarea"},
+      {key:"evidence",label:"Les Preuves / Sources",ph:"\u00c9tude, meta-analyse. Format: Auteur (ann\u00e9e), Journal.",type:"textarea"},
+      {key:"nuance",label:"La Nuance",ph:"Rien n'est noir ou blanc en sant\u00e9. La nuance = ta cr\u00e9dibilit\u00e9.",type:"textarea"},
+      {key:"takeaway",label:"Le Takeaway",ph:"UNE action que le lecteur peut faire d\u00e8s aujourd'hui.",type:"textarea"}
+    ],
+    tips:[
+      "Toujours citer au moins une source. Pas de 'des \u00e9tudes montrent' sans r\u00e9f\u00e9rence.",
+      "Vulgarise sans simplifier \u00e0 l'exc\u00e8s. L'analogie est ton meilleur outil.",
+      "Thread Twitter optimal : 5-7 tweets. Au-del\u00e0 les gens d\u00e9crochent.",
+      "LinkedIn carousel : 8-12 slides. Structur\u00e9, visuel, scannable."
+    ],
+    checklist:["Source(s) cit\u00e9e(s) ?","Pas de conseil m\u00e9dical direct ?","Accessible \u00e0 un non-m\u00e9decin ?","Hook factuel ?","Nuance pr\u00e9sente ?","Thread < 10 tweets ?"]
+  },
   omega: {
     name:"\u03a9", full:"Be Simple / Omega", color:"#22C55E", icon:"\u{1F9D8}",
     frameworks:[
@@ -1127,16 +1153,24 @@ const PLAT_LIMITS = {
   instagram:{name:"Instagram",max:2200,optimal:"125-150 car."},
   tiktok:{name:"TikTok",max:4000,optimal:"Court"},
   facebook:{name:"Facebook",max:63206,optimal:"40-80 mots"},
+  youtube:{name:"YouTube",max:5000,optimal:"Court (description)"},
 };
 
 const PLAN = [
-  [{ p:"twitter",l:"\u03a9 tweet",t:"tweet",f:"omega" },{ p:"instagram",l:"JCD story",t:"story",f:"jcd" },{ p:"tiktok",l:"JCD TikTok",t:"tiktok",f:"jcd" }],
-  [{ p:"twitter",l:"SaaS tweet",t:"tweet",f:"saas" },{ p:"facebook",l:"\u03a9 post",t:"post",f:"omega" },{ p:"linkedin",l:"SaaS post",t:"post",f:"saas" }],
-  [{ p:"twitter",l:"JCD tweet",t:"tweet",f:"jcd" },{ p:"instagram",l:"\u03a9 post",t:"post",f:"omega" }],
-  [{ p:"twitter",l:"\u03a9 tweet",t:"tweet",f:"omega" },{ p:"instagram",l:"SaaS story",t:"story",f:"saas" },{ p:"facebook",l:"JCD post",t:"post",f:"jcd" },{ p:"tiktok",l:"\u03a9 TikTok",t:"tiktok",f:"omega" }],
-  [{ p:"twitter",l:"SaaS tweet",t:"tweet",f:"saas" },{ p:"instagram",l:"JCD reel",t:"reel",f:"jcd" },{ p:"linkedin",l:"\u03a9 post",t:"post",f:"omega" }],
-  [{ p:"twitter",l:"JCD tweet",t:"tweet",f:"jcd" },{ p:"youtube",l:"SaaS short",t:"short",f:"saas" },{ p:"facebook",l:"SaaS post",t:"post",f:"saas" },{ p:"tiktok",l:"JCD TikTok",t:"tiktok",f:"jcd" }],
-  [{ p:"twitter",l:"\u03a9 tweet",t:"tweet",f:"omega" },{ p:"instagram",l:"\u03a9 story",t:"story",f:"omega" }],
+  // Lun — 5 t\u00e2ches
+  [{ p:"tiktok",l:"JCD TikTok",t:"tiktok",f:"jcd" },{ p:"twitter",l:"SaaS tweet",t:"tweet",f:"saas" },{ p:"facebook",l:"JCD reel",t:"reel",f:"jcd" },{ p:"instagram",l:"JCD reel",t:"reel",f:"jcd" },{ p:"linkedin",l:"SaaS carousel",t:"carousel",f:"saas" }],
+  // Mar — 5 t\u00e2ches
+  [{ p:"tiktok",l:"JCD TikTok",t:"tiktok",f:"jcd" },{ p:"twitter",l:"Sant\u00e9 thread",t:"thread",f:"sante" },{ p:"facebook",l:"\u03a9 post",t:"post",f:"omega" },{ p:"youtube",l:"JCD short",t:"short",f:"jcd" },{ p:"instagram",l:"\u03a9 carousel",t:"carousel",f:"omega" }],
+  // Mer — 5 t\u00e2ches
+  [{ p:"tiktok",l:"\u03a9 TikTok",t:"tiktok",f:"omega" },{ p:"twitter",l:"\u03a9 tweet",t:"tweet",f:"omega" },{ p:"twitter",l:"SaaS tweet",t:"tweet",f:"saas" },{ p:"facebook",l:"JCD reel",t:"reel",f:"jcd" },{ p:"linkedin",l:"Sant\u00e9 carousel",t:"carousel",f:"sante" }],
+  // Jeu — 5 t\u00e2ches
+  [{ p:"tiktok",l:"JCD TikTok",t:"tiktok",f:"jcd" },{ p:"twitter",l:"Sant\u00e9 thread",t:"thread",f:"sante" },{ p:"facebook",l:"SaaS post",t:"post",f:"saas" },{ p:"youtube",l:"SaaS short",t:"short",f:"saas" },{ p:"instagram",l:"JCD story",t:"story",f:"jcd" }],
+  // Ven — 5 t\u00e2ches
+  [{ p:"tiktok",l:"JCD TikTok",t:"tiktok",f:"jcd" },{ p:"twitter",l:"\u03a9 tweet",t:"tweet",f:"omega" },{ p:"facebook",l:"\u03a9 reel",t:"reel",f:"omega" },{ p:"instagram",l:"JCD reel",t:"reel",f:"jcd" },{ p:"linkedin",l:"\u03a9 post",t:"post",f:"omega" }],
+  // Sam — 5 t\u00e2ches
+  [{ p:"tiktok",l:"\u03a9 TikTok",t:"tiktok",f:"omega" },{ p:"twitter",l:"SaaS tweet",t:"tweet",f:"saas" },{ p:"youtube",l:"Longue vid\u00e9o",t:"long",f:"saas" },{ p:"instagram",l:"\u03a9 story",t:"story",f:"omega" },{ p:"linkedin",l:"SaaS post",t:"post",f:"saas" }],
+  // Dim — 5 t\u00e2ches
+  [{ p:"tiktok",l:"JCD TikTok",t:"tiktok",f:"jcd" },{ p:"twitter",l:"\u03a9 tweet",t:"tweet",f:"omega" },{ p:"facebook",l:"JCD post",t:"post",f:"jcd" },{ p:"youtube",l:"Sant\u00e9 short",t:"short",f:"sante" },{ p:"instagram",l:"\u03a9 carousel",t:"carousel",f:"omega" }],
 ];
 
 const DAYS = ["Lun","Mar","Mer","Jeu","Ven","Sam","Dim"];
@@ -1177,7 +1211,7 @@ function loadEpisode(id){const r=localStorage.getItem("nmo_ep_"+id);return r?JSO
 function saveEpisode(id,d){localStorage.setItem("nmo_ep_"+id,JSON.stringify(d));}
 function loadBank(){const r=localStorage.getItem("nmo_bank");return r?JSON.parse(r):[];}
 function saveBank(d){localStorage.setItem("nmo_bank",JSON.stringify(d));}
-function loadCounters(){const r=localStorage.getItem("nmo_counters");return r?JSON.parse(r):{jcd:0,saas:0,omega:0};}
+function loadCounters(){const r=localStorage.getItem("nmo_counters");return r?JSON.parse(r):{jcd:0,saas:0,sante:0,omega:0};}
 function saveCounters(c){localStorage.setItem("nmo_counters",JSON.stringify(c));}
 function nextEpNum(sid){const c=loadCounters();c[sid]++;saveCounters(c);return c[sid];}
 function createEpisode(sid){
@@ -1193,8 +1227,9 @@ function getKanbanCol(stepData,contentType){
   if(stepData.every(Boolean))return 4;
   const fi=stepData.findIndex(s=>!s);
   const steps=CT[contentType];
-  if(steps.length===3)return [0,1,3][fi]; // skip col 2 (Tournage)
-  return fi; // 4-step: 0,1,2,3 direct
+  if(steps.length===3)return [0,1,3][fi]; // 3-step: skip col 2
+  if(steps.length===5)return Math.min(fi,3); // 5-step: compress into 4 cols
+  return fi; // 4-step: direct mapping
 }
 
 // Next action: find most urgent incomplete task
@@ -1639,7 +1674,7 @@ function renderFocus(){
     ctaHtml=`<div class="focus-cta"><div class="focus-cta-text"><div class="focus-cta-label">Prochaine \u00e9tape</div><div class="focus-cta-step">${steps[curStep]}</div></div><button class="focus-cta-btn" id="focusAdvBtn">Marquer comme fait</button></div>`;
   }
 
-  const phMap={tweet:"Ton id\u00e9e de tweet, le texte...",post:"Ton id\u00e9e de post, le brouillon...",story:"Id\u00e9e de story, plan de tournage...",reel:"Script du reel, id\u00e9es visuelles...",short:"Script du short, id\u00e9es...",tiktok:"Script TikTok, tendance, son..."};
+  const phMap={tweet:"Ton id\u00e9e de tweet, le texte...",thread:"Sujet du thread, plan des tweets, sources...",post:"Ton id\u00e9e de post, le brouillon...",carousel:"Sujet du carousel, slides cl\u00e9s, design...",story:"Id\u00e9e de story, plan de tournage...",reel:"Script du reel, id\u00e9es visuelles...",short:"Script du short, id\u00e9es...",tiktok:"Script TikTok, tendance, son...",long:"Id\u00e9e de vid\u00e9o longue, plan, script d\u00e9taill\u00e9..."};
   const allTasks=[];
   for(let d=0;d<7;d++)PLAN[d].forEach((tk,i)=>{if(!prodFilterPlatform||tk.p===prodFilterPlatform)allTasks.push({d,i});});
   const curIdx=allTasks.findIndex(x=>x.d===focusD&&x.i===focusI);
@@ -1932,7 +1967,7 @@ function renderBankView(pc){
       e.stopPropagation();
       const idx=+el.dataset.idx;
       const b=loadBank();
-      const order=[null,"jcd","saas","omega"];
+      const order=[null,"jcd","saas","sante","omega"];
       const cur=order.indexOf(b[idx].series);
       b[idx].series=order[(cur+1)%order.length];
       saveBank(b);renderProduction();
