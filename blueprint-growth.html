@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blueprint Growth Hacking — Ne M'Oublie Pas</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+  :root {
+    --bg: #0A0A0B;
+    --surface: #111113;
+    --surface2: #1A1A1E;
+    --border: #2E2E32;
+    --text: #EDEDEF;
+    --text2: #A0A0A8;
+    --text3: #6C6C76;
+    --accent: #8B5CF6;
+    --tiktok: #ff0050;
+    --twitter: #1d9bf0;
+    --facebook: #1877f2;
+    --youtube: #ff0033;
+    --instagram: #e6683c;
+    --linkedin: #0a66c2;
+    --green: #22C55E;
+    --amber: #F59E0B;
+    --red: #EF4444;
+    --pink: #EC4899;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .doc {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 48px 32px;
+  }
+
+  /* COVER */
+  .cover {
+    text-align: center;
+    padding: 80px 0 60px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 48px;
+  }
+  .cover-badge {
+    display: inline-block;
+    padding: 4px 14px;
+    border: 1px solid var(--accent);
+    border-radius: 20px;
+    color: var(--accent);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .cover h1 {
+    font-size: 42px;
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 16px;
+    background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .cover .subtitle {
+    font-size: 18px;
+    color: var(--text2);
+    font-weight: 500;
+  }
+  .cover .version {
+    margin-top: 24px;
+    font-size: 12px;
+    color: var(--text3);
+  }
+
+  /* TOC */
+  .toc {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 32px;
+    margin-bottom: 48px;
+  }
+  .toc h2 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--text2);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .toc-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .toc-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    background: var(--surface2);
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--text);
+    font-size: 13px;
+    font-weight: 600;
+    transition: background 150ms;
+  }
+  .toc-item:hover { background: #222226; }
+  .toc-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  /* SECTIONS */
+  .platform-section {
+    margin-bottom: 64px;
+    page-break-inside: avoid;
+  }
+  .platform-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--border);
+  }
+  .platform-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    flex-shrink: 0;
+  }
+  .platform-header h2 {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+  .platform-header .role {
+    font-size: 14px;
+    color: var(--text2);
+    font-weight: 500;
+  }
+
+  /* SUBSECTIONS */
+  h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 32px 0 16px;
+    padding-left: 12px;
+    border-left: 3px solid var(--accent);
+  }
+  h4 {
+    font-size: 14px;
+    font-weight: 700;
+    margin: 20px 0 10px;
+    color: var(--text2);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  /* CARDS */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 16px;
+  }
+  .card-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text2);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 12px;
+  }
+
+  /* STATS */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .stat {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+  }
+  .stat-value {
+    font-size: 24px;
+    font-weight: 800;
+    margin-bottom: 4px;
+  }
+  .stat-label {
+    font-size: 11px;
+    color: var(--text3);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  /* LISTS */
+  ul, ol {
+    padding-left: 20px;
+    margin-bottom: 12px;
+  }
+  li {
+    margin-bottom: 6px;
+    color: var(--text2);
+  }
+  li strong { color: var(--text); }
+
+  /* TABLES */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    font-size: 13px;
+  }
+  th {
+    text-align: left;
+    padding: 10px 12px;
+    background: var(--surface2);
+    color: var(--text2);
+    font-weight: 700;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    border-bottom: 1px solid var(--border);
+  }
+  td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text2);
+  }
+  tr:hover td { background: var(--surface); }
+
+  /* TAGS */
+  .tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 700;
+  }
+  .tag-data { background: rgba(34,197,94,0.15); color: var(--green); }
+  .tag-opinion { background: rgba(245,158,11,0.15); color: var(--amber); }
+  .tag-action { background: rgba(139,92,246,0.15); color: var(--accent); }
+  .tag-danger { background: rgba(239,68,68,0.15); color: var(--red); }
+
+  /* TIMELINE */
+  .timeline {
+    position: relative;
+    padding-left: 24px;
+    margin: 16px 0;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--border);
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 20px;
+    padding-left: 16px;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -22px;
+    top: 6px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--bg);
+  }
+  .timeline-period {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+
+  /* CHECKLIST */
+  .checklist { list-style: none; padding-left: 0; }
+  .checklist li {
+    padding: 8px 12px;
+    background: var(--surface);
+    border-radius: 6px;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .checklist li::before {
+    content: '☐';
+    color: var(--text3);
+    font-size: 16px;
+  }
+
+  /* CALLOUT */
+  .callout {
+    padding: 16px 20px;
+    border-radius: 10px;
+    margin: 16px 0;
+    border-left: 3px solid;
+  }
+  .callout-warn {
+    background: rgba(239,68,68,0.08);
+    border-color: var(--red);
+  }
+  .callout-tip {
+    background: rgba(34,197,94,0.08);
+    border-color: var(--green);
+  }
+  .callout-info {
+    background: rgba(139,92,246,0.08);
+    border-color: var(--accent);
+  }
+  .callout-title {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 6px;
+  }
+
+  /* SOURCE BADGES */
+  .sources {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+  }
+  .source-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 700;
+    border: 1px solid var(--border);
+    color: var(--text3);
+  }
+  .src-perplexity { border-color: #20B2AA; color: #20B2AA; }
+  .src-claude { border-color: #D97757; color: #D97757; }
+  .src-gpt { border-color: #10A37F; color: #10A37F; }
+  .src-grok { border-color: #1d9bf0; color: #1d9bf0; }
+  .src-gemini { border-color: #8E75B2; color: #8E75B2; }
+
+  /* FUNNEL DIAGRAM */
+  .funnel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: 24px 0;
+  }
+  .funnel-step {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    background: var(--surface);
+    border: 1px solid var(--border);
+  }
+  .funnel-arrow { color: var(--text3); font-size: 18px; }
+
+  /* PRINT */
+  @media print {
+    body { background: #fff; color: #111; }
+    .doc { padding: 20px; }
+    .card, .stat, .toc, .callout { border-color: #ddd; background: #f9f9f9; }
+    .platform-header { border-color: #ddd; }
+    h3 { border-color: #8B5CF6; }
+    .stat-value, .cover h1 { color: #111; -webkit-text-fill-color: #111; }
+    .toc-item { background: #f0f0f0; color: #111; }
+    td, li, .stat-label, .role, .callout { color: #444; }
+  }
+
+  @page {
+    margin: 1.5cm;
+    size: A4;
+  }
+</style>
+</head>
+<body>
+<div class="doc">
+
+<!-- ═══════════════════════════════════ COVER ═══════════════════════════════════ -->
+<div class="cover">
+  <div class="cover-badge">Document Vivant — Mis à jour régulièrement</div>
+  <h1>Blueprint<br>Growth Hacking</h1>
+  <p class="subtitle">Stratégies de croissance 0→10K pour 6 plateformes<br>Adapté aux séries JCD · SaaS · Santé · Omega</p>
+  <p class="version">v1.0 — 22 Février 2026 · Sources : Perplexity · Claude · GPT · Grok · Gemini</p>
+</div>
+
+<!-- ═══════════════════════════════════ TOC ═══════════════════════════════════ -->
+<div class="toc">
+  <h2>Sommaire</h2>
+  <div class="toc-grid">
+    <a href="#funnel" class="toc-item"><div class="toc-icon" style="background:rgba(139,92,246,0.15)">🔄</div>Le Funnel</a>
+    <a href="#tiktok" class="toc-item"><div class="toc-icon" style="background:rgba(255,0,80,0.15)">🎵</div>TikTok</a>
+    <a href="#twitter" class="toc-item"><div class="toc-icon" style="background:rgba(29,155,240,0.15)">𝕏</div>X / Twitter</a>
+    <a href="#facebook" class="toc-item"><div class="toc-icon" style="background:rgba(24,119,242,0.15)">📘</div>Facebook</a>
+    <a href="#youtube" class="toc-item"><div class="toc-icon" style="background:rgba(255,0,51,0.15)">▶️</div>YouTube</a>
+    <a href="#instagram" class="toc-item"><div class="toc-icon" style="background:rgba(230,104,60,0.15)">📸</div>Instagram</a>
+    <a href="#linkedin" class="toc-item"><div class="toc-icon" style="background:rgba(10,102,194,0.15)">💼</div>LinkedIn</a>
+    <a href="#cross" class="toc-item"><div class="toc-icon" style="background:rgba(139,92,246,0.15)">🔗</div>Cross-Platform</a>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════ FUNNEL ═══════════════════════════════════ -->
+<section id="funnel" class="platform-section">
+  <div class="platform-header">
+    <div class="platform-icon" style="background:rgba(139,92,246,0.15)">🔄</div>
+    <div>
+      <h2>Le Funnel</h2>
+      <div class="role">Découverte → Crédibilité → Conversion → Preuve → Image → Premium</div>
+    </div>
+  </div>
+
+  <div class="funnel">
+    <div class="funnel-step" style="border-color:var(--tiktok)">🎵 TikTok<br><small style="color:var(--text3)">Découverte</small></div>
+    <span class="funnel-arrow">→</span>
+    <div class="funnel-step" style="border-color:var(--twitter)">𝕏 Twitter<br><small style="color:var(--text3)">Crédibilité</small></div>
+    <span class="funnel-arrow">→</span>
+    <div class="funnel-step" style="border-color:var(--facebook)">📘 Facebook<br><small style="color:var(--text3)">Conversion</small></div>
+    <span class="funnel-arrow">→</span>
+    <div class="funnel-step" style="border-color:var(--youtube)">▶️ YouTube<br><small style="color:var(--text3)">Preuve</small></div>
+    <span class="funnel-arrow">→</span>
+    <div class="funnel-step" style="border-color:var(--instagram)">📸 Instagram<br><small style="color:var(--text3)">Image</small></div>
+    <span class="funnel-arrow">→</span>
+    <div class="funnel-step" style="border-color:var(--linkedin)">💼 LinkedIn<br><small style="color:var(--text3)">Premium</small></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Séries × Plateformes</div>
+    <table>
+      <tr><th>Série</th><th>Plateformes principales</th><th>Rôle</th></tr>
+      <tr><td><strong style="color:#F59E0B">🎭 JCD</strong></td><td>TikTok, Instagram, Facebook, YouTube</td><td>Humour corporate — aimant à attention</td></tr>
+      <tr><td><strong style="color:#8B5CF6">🔧 SaaS</strong></td><td>X, LinkedIn, YouTube</td><td>Build-in-public — preuve de compétence</td></tr>
+      <tr><td><strong style="color:#EC4899">🩺 Santé</strong></td><td>X, LinkedIn, YouTube</td><td>Expertise médicale — crédibilité pro</td></tr>
+      <tr><td><strong style="color:#22C55E">🌀 Omega</strong></td><td>Cross-platform</td><td>Philosophie Be Simple — liant universel</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ TIKTOK ═══════════════════════════════════ -->
+<section id="tiktok" class="platform-section">
+  <div class="platform-header">
+    <div class="platform-icon" style="background:rgba(255,0,80,0.15)">🎵</div>
+    <div>
+      <h2 style="color:var(--tiktok)">TikTok</h2>
+      <div class="role">Découverte / Attention froide — JCD × Omega</div>
+    </div>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat"><div class="stat-value" style="color:var(--tiktok)">3-5</div><div class="stat-label">Vidéos/jour (lancement)</div></div>
+    <div class="stat"><div class="stat-value" style="color:var(--tiktok)">12-25s</div><div class="stat-label">Durée optimale sketch</div></div>
+    <div class="stat"><div class="stat-value" style="color:var(--tiktok)">&gt;65%</div><div class="stat-label">Taux complétion cible</div></div>
+    <div class="stat"><div class="stat-value" style="color:var(--tiktok)">30</div><div class="stat-label">Jours pour classifier</div></div>
+  </div>
+
+  <h3>Algorithme 2025-2026</h3>
+
+  <div class="card">
+    <div class="card-title">Signaux de ranking FYP <span class="tag tag-data">DONNÉES</span></div>
+    <table>
+      <tr><th>Signal</th><th>Poids</th><th>Ce que ça veut dire</th></tr>
+      <tr><td><strong>Watch time / Complétion</strong></td><td style="color:var(--tiktok);font-weight:700">~40%</td><td>Vidéo vue jusqu'au bout + replays</td></tr>
+      <tr><td><strong>Partages + Follows</strong></td><td style="color:var(--amber);font-weight:700">~25%</td><td>Partages DM/stories + follow après vue</td></tr>
+      <tr><td><strong>Likes + Commentaires</strong></td><td style="color:var(--text2);font-weight:700">~20%</td><td>Engagement actif visible</td></tr>
+      <tr><td><strong>Fraîcheur + Niche</strong></td><td style="color:var(--text3);font-weight:700">~15%</td><td>Cohérence hashtags/description/voix</td></tr>
+    </table>
+    <div class="sources"><span class="source-badge src-perplexity">Perplexity</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Batch Testing <span class="tag tag-data">DONNÉES</span></div>
+    <ul>
+      <li><strong>Batch 1 :</strong> 200-500 impressions → Si complétion + partages > moyenne niche → Batch 2</li>
+      <li><strong>Batch 2 :</strong> ~5 000 impressions → Même test</li>
+      <li><strong>Batch 3 :</strong> ~50 000 impressions</li>
+      <li><strong>Batch 4 :</strong> 500K+ → Viralité</li>
+    </ul>
+    <div class="sources"><span class="source-badge src-perplexity">Perplexity</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Content Buckets — Comment TikTok te classe <span class="tag tag-opinion">OPINION EXPERT</span></div>
+    <p style="color:var(--text2);margin-bottom:12px">Les 10-20 premières vidéos servent à te ranger dans 2-3 buckets. L'algo analyse :</p>
+    <ul>
+      <li>Hooks parlés dans les 3 premières secondes</li>
+      <li>Sous-titres + description + hashtags</li>
+      <li>Musique utilisée</li>
+      <li>Temps de visionnage par type d'audience</li>
+    </ul>
+    <div class="callout callout-tip">
+      <div class="callout-title" style="color:var(--green)">Application</div>
+      4 buckets clairs dès le départ : JCD (humour corporate), SaaS (build-in-public), Santé (myth-busting), Omega (mini-manifestes). Ratio initial : 50% JCD / 30% SaaS / 10% Santé / 10% Omega.
+    </div>
+    <div class="sources"><span class="source-badge src-perplexity">Perplexity</span></div>
+  </div>
+
+  <h3>Stratégie 0 → 10K (30 jours)</h3>
+
+  <div class="card">
+    <div class="card-title">Horaires optimaux Europe/CET <span class="tag tag-data">DONNÉES</span></div>
+    <div class="stats-row">
+      <div class="stat"><div class="stat-value" style="font-size:16px">7h-9h</div><div class="stat-label">Matin</div></div>
+      <div class="stat"><div class="stat-value" style="font-size:16px">12h-14h</div><div class="stat-label">Midi</div></div>
+      <div class="stat"><div class="stat-value" style="font-size:16px">18h-21h</div><div class="stat-label">Soir (prime)</div></div>
+    </div>
+    <p style="color:var(--text3);font-size:12px">2 slots fixes (ex: 8h + 19h) pour la data + 1-2 slots variables pour tester.</p>
+    <div class="sources"><span class="source-badge src-perplexity">Perplexity</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Signaler ta niche à l'algo <span class="tag tag-action">ACTION</span></div>
+    <p style="color:var(--text2);margin-bottom:8px"><strong>10 premiers jours :</strong></p>
+    <ul>
+      <li><strong>Hashtags systématiques :</strong> #humourbusiness, #satyrecorporate, #buildinpublic, #sante, #devperso</li>
+      <li><strong>Mots-clés parlés</strong> dans les 3 premières secondes : "En entreprise…", "Sur mon SaaS…"</li>
+      <li><strong>Descriptions</strong> avec mot-clé niche en début : "Humour corporate : …", "SaaS log #1 : …"</li>
+    </ul>
+    <div class="sources"><span class="source-badge src-perplexity">Perplexity</span></div>
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-title" style="color:var(--red)">Erreurs fatales</div>
+    <ul style="margin:0">
+      <li>Mélanger formats/niches au hasard (une danse, un vlog, puis un SaaS deep-dive)</li>
+      <li>Supprimer en masse les premières vidéos (les laisser, enterrer par du meilleur)</li>
+      <li>Reposter identique plusieurs fois d'affilée (pénalisé duplicate)</li>
+      <li>Abandonner après 10-15 vidéos "flop" (l'algo a besoin de 30-50 contenus)</li>
+    </ul>
+  </div>
+
+  <h3>Plan d'action 30 jours</h3>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-period">Jours 1-3 — Exploration</div>
+      <p style="color:var(--text2)"><strong>4-5 vidéos/jour.</strong> Pack : 2 JCD, 1 SaaS, 1 Santé, 1 Omega. Objectif : explorer formats (facecam vs sketch, text overlay vs sans, jump cuts vs plan fixe).</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-period">Jours 4-7 — Filtrage</div>
+      <p style="color:var(--text2)">Garder ce qui a le meilleur % de complétion (même si peu de vues). <strong>3-4 vidéos/jour</strong> : 2 JCD + 1 SaaS + 0-1 Omega/Santé.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-period">Jours 8-14 — Double Down</div>
+      <p style="color:var(--text2)">Double down sur 2-3 formats qui performent. <strong>CTA systématique vers X :</strong> "Je partage les chiffres réels sur X, lien en bio." 1 live test si 1K followers atteint.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-period">Jours 15-30 — Systématisation</div>
+      <p style="color:var(--text2)"><strong>3 vidéos/jour stables.</strong> Lun/Mer/Ven : TikTok optimisé viralité (JCD/Omega). Mar/Jeu/Sam : contenu niche (SaaS/Santé). Recycler les meilleurs en Shorts YouTube + Reels IG.</p>
+    </div>
+  </div>
+
+  <h3>Format & Contenu</h3>
+
+  <div class="card">
+    <div class="card-title">Durées optimales par série <span class="tag tag-data">DONNÉES</span></div>
+    <table>
+      <tr><th>Série</th><th>Durée</th><th>Pourquoi</th></tr>
+      <tr><td style="color:#F59E0B"><strong>JCD</strong></td><td>12-25 secondes</td><td>Punchline rapide, pas de fluff</td></tr>
+      <tr><td style="color:#8B5CF6"><strong>SaaS</strong></td><td>25-45 secondes</td><td>1 métrique + 1 leçon</td></tr>
+      <tr><td style="color:#EC4899"><strong>Santé</strong></td><td>25-45 secondes</td><td>1 mythe + la vérité</td></tr>
+      <tr><td style="color:#22C55E"><strong>Omega</strong></td><td>20-40 secondes</td><td>Mini-manifeste percutant</td></tr>
+    </table>
+    <div class="sources"><span class="source-badge src-perplexity">Perplexity</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Structure vidéo virale (gabarit) <span class="tag tag-action">ACTION</span></div>
+    <table>
+      <tr><th>Timing</th><th>Élément</th><th>Exemple JCD</th></tr>
+      <tr><td><strong>0-2s</strong></td><td>Hook visuel + phrase choc</td><td>"Ce mail passif-agressif que tu as déjà reçu."</td></tr>
+      <tr><td><strong>2-10s</strong></td><td>Déploiement conflit/tension</td><td>Le sketch se déroule</td></tr>
+      <tr><td><strong>10-20s</strong></td><td>Twist / punchline / insight</td><td>Le retournement comique</td></tr>
+      <tr><td><strong>Fin</strong></td><td>Micro-CTA</td><td>"Si tu bosses en open space, suis pour la suite."</td></tr>
+    </table>
+    <div class="sources"><span class="source-badge src-perplexity">Perplexity</span></div>
+  </div>
+
+  <div class="callout callout-tip">
+    <div class="callout-title" style="color:var(--green)">Maximiser la complétion</div>
+    <ul style="margin:0">
+      <li>Couper toute intro type "Salut c'est Christian…"</li>
+      <li>Texte à l'écran avec promesse : "3 erreurs qui te flinguent en réunion"</li>
+      <li>Un cut toutes les 1-2s, pas de blanc sonore</li>
+      <li>Hook "ouvert" : question non résolue jusqu'aux 3-4 dernières secondes</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Sons : Trending vs Original <span class="tag tag-opinion">OPINION EXPERT</span></div>
+    <ul>
+      <li><strong>60-70%</strong> : sons trends bas volume en fond pour profiter du trend</li>
+      <li><strong>30-40%</strong> : son original pour formats personnels (Omega, certaines Santé)</li>
+    </ul>
+    <p style="color:var(--text3);font-size:12px;margin-top:8px">Contenu : 20-30% trend-jacking pur, 70-80% formats "signature" réutilisables.</p>
+    <div class="sources"><span class="source-badge src-perplexity">Perplexity</span></div>
+  </div>
+
+  <h3>Hashtags & SEO TikTok</h3>
+
+  <div class="card">
+    <div class="card-title">Stratégie hashtags 2026 <span class="tag tag-action">ACTION</span></div>
+    <p style="color:var(--text2);margin-bottom:8px"><strong>3-6 hashtags par vidéo max</strong></p>
+    <table>
+      <tr><th>Type</th><th>Nombre</th><th>Exemples</th></tr>
+      <tr><td>Broad</td><td>1-2</td><td>#humour, #business, #santé</td></tr>
+      <tr><td>Niche</td><td>2-3</td><td>#humourcorporate, #medtech, #buildinpublicSaaS</td></tr>
+      <tr><td>Branded</td><td>1</td><td>#JCD, #OmegaSeries, #ChristianLevy</td></tr>
+    </table>
+    <div class="callout callout-info">
+      <div class="callout-title" style="color:var(--accent)">SEO TikTok</div>
+      TikTok lit la voix + texte à l'écran. Intégrer le mot-clé dans : (1) la première phrase dite, (2) le texte overlay principal, (3) le début de description.
+    </div>
+    <div class="sources"><span class="source-badge src-perplexity">Perplexity</span></div>
+  </div>
+
+  <h3>Engagement & Communauté</h3>
+
+  <div class="card">
+    <div class="card-title">Stratégie engagement <span class="tag tag-action">ACTION</span></div>
+    <ul>
+      <li><strong>30 premières minutes :</strong> répondre à 100% des commentaires</li>
+      <li><strong>Débats soft</strong> sur JCD/Omega pour augmenter les commentaires</li>
+      <li><strong>10-20 commentaires/jour</strong> sur vidéos de créateurs proches (drôles OU utiles)</li>
+    </ul>
+    <h4>Duets / Stitches — 2-3/semaine</h4>
+    <ul>
+      <li><strong>Duet :</strong> réagir à scènes corporate, pitchs SaaS douteux, "life hacks santé" foireux</li>
+      <li><strong>Stitch :</strong> reprendre 2-3s d'un TikTok populaire + ton twist (humour + expertise)</li>
+    </ul>
+    <h4>Lives — Dès 1K followers</h4>
+    <ul>
+      <li>2 lives/semaine de 20-40 min</li>
+      <li>Format : AMA SaaS/Santé ou "réunion d'équipe fictive" JCD</li>
+      <li>CTA clair vers X/Twitter à la fin</li>
+    </ul>
+    <div class="sources"><span class="source-badge src-perplexity">Perplexity</span></div>
+  </div>
+
+  <h3>Métriques & KPIs</h3>
+
+  <div class="stats-row">
+    <div class="stat"><div class="stat-value" style="color:var(--green)">&gt;65%</div><div class="stat-label">Complétion 15-30s</div></div>
+    <div class="stat"><div class="stat-value" style="color:var(--green)">&gt;50%</div><div class="stat-label">Complétion 30-45s</div></div>
+    <div class="stat"><div class="stat-value" style="color:var(--green)">&gt;1-2%</div><div class="stat-label">Partages/vues</div></div>
+    <div class="stat"><div class="stat-value" style="color:var(--green)">5-15</div><div class="stat-label">Follows/1K vues</div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">A/B Testing simple <span class="tag tag-action">ACTION</span></div>
+    <p style="color:var(--text2)">Poster <strong>2 versions</strong> du même concept : hook différent OU durée différente (18s vs 32s). Observer les premières 500-1000 vues.</p>
+    <div class="sources"><span class="source-badge src-perplexity">Perplexity</span></div>
+  </div>
+
+  <h3>Exemples concrets par série</h3>
+
+  <div class="card">
+    <table>
+      <tr><th>Série</th><th>Exemple de TikTok</th></tr>
+      <tr><td style="color:#F59E0B"><strong>JCD</strong></td><td>POV — "Quand ton manager te dit 'c'est juste un petit ajustement' à 18h59."</td></tr>
+      <tr><td style="color:#8B5CF6"><strong>SaaS</strong></td><td>"Jour 17 de mon SaaS : j'ai perdu 12% de rétention. Voilà pourquoi."</td></tr>
+      <tr><td style="color:#EC4899"><strong>Santé</strong></td><td>"3 mythes sur les bilans sanguins que même certains médecins entretiennent."</td></tr>
+      <tr><td style="color:#22C55E"><strong>Omega</strong></td><td>"Tu n'es pas fatigué, tu es sous-stimulé intellectuellement."</td></tr>
+    </table>
+    <div class="sources"><span class="source-badge src-perplexity">Perplexity</span></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ X/TWITTER ═══════════════════════════════════ -->
+<section id="twitter" class="platform-section">
+  <div class="platform-header">
+    <div class="platform-icon" style="background:rgba(29,155,240,0.15)">𝕏</div>
+    <div>
+      <h2 style="color:var(--twitter)">X / Twitter</h2>
+      <div class="role">Crédibilité / Expertise rapide — SaaS × Santé × Omega</div>
+    </div>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat"><div class="stat-value" style="color:var(--twitter)">3-5</div><div class="stat-label">Tweets/jour</div></div>
+    <div class="stat"><div class="stat-value" style="color:var(--twitter)">1-2</div><div class="stat-label">Threads/semaine</div></div>
+    <div class="stat"><div class="stat-value" style="color:var(--twitter)">20-40</div><div class="stat-label">Replies ciblées/jour</div></div>
+    <div class="stat"><div class="stat-value" style="color:var(--twitter)">30/70</div><div class="stat-label">Création vs Engagement</div></div>
+  </div>
+
+  <h3>Algorithme For You</h3>
+
+  <div class="card">
+    <div class="card-title">Signaux de ranking <span class="tag tag-opinion">OPINION EXPERT</span></div>
+    <table>
+      <tr><th>Signal</th><th>Poids</th><th>Détail</th></tr>
+      <tr><td><strong>Engagement 1-2h</strong></td><td style="color:var(--twitter);font-weight:700">~30%</td><td>Likes, replies, RTs, bookmarks dans les premières heures</td></tr>
+      <tr><td><strong>Clics profil</strong></td><td style="color:var(--amber);font-weight:700">~25%</td><td>Taux de clics vers ton profil après lecture</td></tr>
+      <tr><td><strong>Force du graphe social</strong></td><td style="color:var(--text2);font-weight:700">~25%</td><td>QUI t'engage (pas juste combien)</td></tr>
+      <tr><td><strong>Fréquence/régularité</strong></td><td style="color:var(--text3);font-weight:700">~20%</td><td>Tweet, reply, DM — activité régulière</td></tr>
+    </table>
+    <div class="callout callout-info">
+      <div class="callout-title" style="color:var(--accent)">Premium / Twitter Blue</div>
+      Boost de visibilité modéré mais réel pour les réponses aux gros comptes et pour les tweets originaux.
+    </div>
+    <div class="sources"><span class="source-badge src-perplexity">Perplexity</span></div>
+  </div>
+
+  <h3>Stratégie 0 → 10K (30 jours)</h3>
+
+  <div class="card">
+    <div class="card-title">"Reply Guy" stratégique <span class="tag tag-action">ACTION</span></div>
+    <ul>
+      <li><strong>Cible :</strong> 20-30 comptes dans SaaS, tech, médecine/santé, dev perso business</li>
+      <li><strong>Timing :</strong> répondre dans les <strong>2-3 minutes</strong> après leur tweet</li>
+      <li><strong>Style :</strong> ajouter une donnée ou une formule punchline</li>
+    </ul>
+    <div class="callout callout-tip">
+      <div class="callout-title" style="color:var(--green)">Exemple</div>
+      Sous un tweet sur burn-out : "On confond souvent surmenage et sous-sens. Le corps lâche quand la tête ne voit plus pourquoi continuer."
+    </div>
+    <div class="sources"><span class="source-badge src-perplexity">Perplexity</span></div>
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-title" style="color:var(--red)">Erreurs (shadowban soft)</div>
+    <ul style="margin:0">
+      <li>Spam de liens externes dans tous les tweets</li>
+      <li>Automatisation agressive de follow-unfollow</li>
+      <li>Trop de duplication (même thread posté plusieurs fois)</li>
+    </ul>
+  </div>
+
+  <h3>Plan d'action 30 jours</h3>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-period">Jours 1-3 — Fondations</div>
+      <p style="color:var(--text2)">1 thread "qui tu es / ce que tu vas partager" par jour. <strong>30 replies/jour</strong> sur gros comptes de ta niche.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-period">Jours 4-7 — Contenu série</div>
+      <p style="color:var(--text2)">1 thread SaaS (build-in-public) + 1 thread Santé/médical vulgarisé. 3-4 tweets courts JCD/Omega par jour.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-period">Jours 8-14 — Optimisation</div>
+      <p style="color:var(--text2)">Optimiser ce qui marche (si SaaS attire des follows → mini-série). CTA croisé : "J'ai tourné le sketch de cette situation sur TikTok."</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-period">Jours 15-30 — Cruising</div>
+      <p style="color:var(--text2)">2 threads/semaine (1 SaaS, 1 Santé/Omega). 3-5 tweets/jour dont 1 QT d'un gros compte avec perspective médicale ou produit.</p>
+    </div>
+  </div>
+
+  <h3>Format & Contenu</h3>
+
+  <div class="card">
+    <div class="card-title">Thread SaaS type <span class="tag tag-action">ACTION</span></div>
+    <ol>
+      <li><strong>Hook :</strong> "J'ai passé de 0 à 500 users sans dépenser 1€ en ads. Ce que j'ai appris :"</li>
+      <li>Tweets 2-5 : erreurs, pivots, métriques</li>
+      <li>Tweets 6-10 : leçons concrètes, "si c'était à refaire"</li>
+    </ol>
+    <div class="sources"><span class="source-badge src-perplexity">Perplexity</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Thread Santé type <span class="tag tag-action">ACTION</span></div>
+    <ol>
+      <li><strong>Hook :</strong> "3 signaux dans tes prises de sang que tu ignores probablement mais qui en disent long."</li>
+      <li>Tweets 2-4 : expliquer</li>
+      <li>Tweets 5-7 : conseils actionnables</li>
+    </ol>
+    <div class="sources"><span class="source-badge src-perplexity">Perplexity</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Engagement & Réseau <span class="tag tag-action">ACTION</span></div>
+    <ul>
+      <li><strong>Twitter Spaces :</strong> 1/semaine à partir de 1-2K followers. Format : "Consultation SaaS/Santé/carrière en direct"</li>
+      <li><strong>DMs :</strong> Suivre chaque personne qui pose une bonne question. Message personnalisé court, jamais de pitch</li>
+      <li><strong>Listes :</strong> Liste privée "Cibles B2B / potentiels leads"</li>
+      <li><strong>Pinned tweet :</strong> Mini-thread qui résume qui tu es + lien vers ton funnel</li>
+    </ul>
+    <div class="sources"><span class="source-badge src-perplexity">Perplexity</span></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ FACEBOOK ═══════════════════════════════════ -->
+<section id="facebook" class="platform-section">
+  <div class="platform-header">
+    <div class="platform-icon" style="background:rgba(24,119,242,0.15)">📘</div>
+    <div>
+      <h2 style="color:var(--facebook)">Facebook</h2>
+      <div class="role">Conversion / Communauté — JCD × Omega × SaaS</div>
+    </div>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat"><div class="stat-value" style="color:var(--facebook)">3-5</div><div class="stat-label">Reels/semaine</div></div>
+    <div class="stat"><div class="stat-value" style="color:var(--facebook)">3</div><div class="stat-label">Posts texte/semaine</div></div>
+    <div class="stat"><div class="stat-value" style="color:var(--facebook)">1</div><div class="stat-label">Live/semaine</div></div>
+    <div class="stat"><div class="stat-value" style="color:var(--facebook)">Page+Groupe</div><div class="stat-label">Structure</div></div>
+  </div>
+
+  <h3>Stratégie</h3>
+
+  <div class="card">
+    <div class="card-title">Structure recommandée <span class="tag tag-action">ACTION</span></div>
+    <ul>
+      <li><strong>Page</strong> (marque perso) pour légitimité + ads + Reels</li>
+      <li><strong>Groupe privé</strong> lié : "Humour corporate & hygiène mentale au travail"</li>
+      <li><strong>Reels :</strong> plus gros boost de reach organique (recyclage TikTok + adaptation)</li>
+    </ul>
+    <div class="sources"><span class="source-badge src-perplexity">Perplexity</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Bootstrapping communauté <span class="tag tag-action">ACTION</span></div>
+    <ul>
+      <li>CTA dans chaque TikTok/YouTube : "Groupe FB où on discute de santé mentale au travail + SaaS et carrière"</li>
+      <li>Bonus exclusifs dans le groupe : lives Q&A, PDF, checklists</li>
+      <li>Ads optionnel : retarget TikTok/X/YouTube viewers vers Page ou lead magnet</li>
+      <li><strong>Monétisation possible dès 1000-2000 membres engagés</strong></li>
+    </ul>
+    <div class="sources"><span class="source-badge src-perplexity">Perplexity</span></div>
+  </div>
+
+  <h3>Plan d'action 30 jours</h3>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-period">Semaine 1 — Setup</div>
+      <p style="color:var(--text2)">Créer Page + Groupe. 2-3 Reels + 2 posts texte.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-period">Semaine 2 — Activation</div>
+      <p style="color:var(--text2)">3-4 Reels, 3 posts groupe, premier live.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-period">Semaines 3-4 — Systématisation</div>
+      <p style="color:var(--text2)">4-5 Reels/semaine + 3-4 posts groupe + 1 live/semaine. CTA cross-plateformes.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ YOUTUBE ═══════════════════════════════════ -->
+<section id="youtube" class="platform-section">
+  <div class="platform-header">
+    <div class="platform-icon" style="background:rgba(255,0,51,0.15)">▶️</div>
+    <div>
+      <h2 style="color:var(--youtube)">YouTube</h2>
+      <div class="role">Preuve en profondeur — JCD × SaaS × Santé</div>
+    </div>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat"><div class="stat-value" style="color:var(--youtube)">1-2</div><div class="stat-label">Shorts/jour (lancement)</div></div>
+    <div class="stat"><div class="stat-value" style="color:var(--youtube)">1</div><div class="stat-label">Long-form/semaine</div></div>
+    <div class="stat"><div class="stat-value" style="color:var(--youtube)">15-25m</div><div class="stat-label">Durée long-form</div></div>
+    <div class="stat"><div class="stat-value" style="color:var(--youtube)">25-45s</div><div class="stat-label">Durée Shorts</div></div>
+  </div>
+
+  <h3>Algorithme</h3>
+
+  <div class="card">
+    <div class="card-title">Signaux clés <span class="tag tag-data">DONNÉES</span></div>
+    <ul>
+      <li><strong>CTR</strong> (vignettes + titres) — premier filtre</li>
+      <li><strong>Watch time</strong> et Average View Duration — rétention</li>
+      <li><strong>Engagement</strong> (likes, commentaires, partage)</li>
+    </ul>
+    <p style="color:var(--text3);font-size:12px;margin-top:8px">Shorts et Long-form : flux de reco séparés mais liés via le canal.</p>
+    <div class="sources"><span class="source-badge src-perplexity">Perplexity</span></div>
+  </div>
+
+  <h3>Format Long-form</h3>
+
+  <div class="card">
+    <div class="card-title">Structure type 15-25 min <span class="tag tag-action">ACTION</span></div>
+    <table>
+      <tr><th>Timing</th><th>Élément</th></tr>
+      <tr><td>0-30s</td><td>Promesse claire</td></tr>
+      <tr><td>1-3 min</td><td>Contexte / histoire</td></tr>
+      <tr><td>3-15 min</td><td>Contenu structuré (3-5 points)</td></tr>
+      <tr><td>Dernières min</td><td>Récap + CTA (YouTube + lien LinkedIn/Facebook)</td></tr>
+    </table>
+    <div class="sources"><span class="source-badge src-perplexity">Perplexity</span></div>
+  </div>
+
+  <h3>Plan d'action 30 jours</h3>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-period">Semaines 1-2</div>
+      <p style="color:var(--text2)">1 Long-form/semaine ("Je lance un SaaS en public : situation de départ + objectifs"). 1 Short/jour (extraits TikTok adaptés).</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-period">Semaines 3-4</div>
+      <p style="color:var(--text2)">2 Long-form (1 SaaS, 1 Santé/Omega). 1-2 Shorts/jour. Playlists par série.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ INSTAGRAM ═══════════════════════════════════ -->
+<section id="instagram" class="platform-section">
+  <div class="platform-header">
+    <div class="platform-icon" style="background:rgba(230,104,60,0.15)">📸</div>
+    <div>
+      <h2 style="color:var(--instagram)">Instagram</h2>
+      <div class="role">Image / Aspiration — JCD × Omega</div>
+    </div>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat"><div class="stat-value" style="color:var(--instagram)">1</div><div class="stat-label">Reel/jour</div></div>
+    <div class="stat"><div class="stat-value" style="color:var(--instagram)">2-3</div><div class="stat-label">Carousels/semaine</div></div>
+    <div class="stat"><div class="stat-value" style="color:var(--instagram)">3-5</div><div class="stat-label">Stories/jour</div></div>
+    <div class="stat"><div class="stat-value" style="color:var(--instagram)">8-15</div><div class="stat-label">Hashtags/post</div></div>
+  </div>
+
+  <h3>Formats</h3>
+
+  <div class="card">
+    <div class="card-title">Mix de contenu <span class="tag tag-action">ACTION</span></div>
+    <table>
+      <tr><th>Format</th><th>Fréquence</th><th>Contenu</th></tr>
+      <tr><td><strong>Reels</strong></td><td>1/jour</td><td>Best TikTok du jour (recyclage + cover propre + légende longue)</td></tr>
+      <tr><td><strong>Carousels</strong></td><td>2-3/semaine</td><td>7-10 slides. Slide 1 = promise. Dernière = CTA ("Enregistre/partage")</td></tr>
+      <tr><td><strong>Stories</strong></td><td>3-5/jour</td><td>Coulisses SaaS, tournage JCD, réflexions Omega, 1 sondage/jour</td></tr>
+    </table>
+    <div class="sources"><span class="source-badge src-perplexity">Perplexity</span></div>
+  </div>
+
+  <h3>Plan d'action 30 jours</h3>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-period">Quotidien</div>
+      <p style="color:var(--text2)">1 Reel/jour + stories quotidiennes (1 sondage + 1 mini-rant JCD ou insight Omega).</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-period">Hebdomadaire</div>
+      <p style="color:var(--text2)">2 carousels : "X croyances fausses sur [thème santé]" + "Framework Omega : comment décider de quitter un job."</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ LINKEDIN ═══════════════════════════════════ -->
+<section id="linkedin" class="platform-section">
+  <div class="platform-header">
+    <div class="platform-icon" style="background:rgba(10,102,194,0.15)">💼</div>
+    <div>
+      <h2 style="color:var(--linkedin)">LinkedIn</h2>
+      <div class="role">Premium / B2B / Deals — SaaS × Santé × Omega</div>
+    </div>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat"><div class="stat-value" style="color:var(--linkedin)">3-5</div><div class="stat-label">Posts/semaine</div></div>
+    <div class="stat"><div class="stat-value" style="color:var(--linkedin)">1-2</div><div class="stat-label">PDF Carousels/sem</div></div>
+    <div class="stat"><div class="stat-value" style="color:var(--linkedin)">20-30</div><div class="stat-label">Invitations/jour</div></div>
+    <div class="stat"><div class="stat-value" style="color:var(--linkedin)">MAX 1</div><div class="stat-label">Post/jour</div></div>
+  </div>
+
+  <h3>Algorithme</h3>
+
+  <div class="card">
+    <div class="card-title">Signaux clés <span class="tag tag-opinion">OPINION EXPERT</span></div>
+    <ul>
+      <li><strong>Dwell time</strong> (temps passé sur le post)</li>
+      <li><strong>Commentaires et re-shares</strong></li>
+      <li><strong>Qualité du réseau engagé</strong> (profils influents ou non)</li>
+      <li><strong>SSI</strong> (Social Selling Index) : indicateur indirect de visibilité</li>
+    </ul>
+    <div class="sources"><span class="source-badge src-perplexity">Perplexity</span></div>
+  </div>
+
+  <h3>Formats</h3>
+
+  <div class="card">
+    <div class="card-title">Formats par performance <span class="tag tag-data">DONNÉES</span></div>
+    <table>
+      <tr><th>Format</th><th>Engagement</th><th>Usage</th></tr>
+      <tr><td><strong>PDF Carousels</strong></td><td style="color:var(--green);font-weight:700">6.6% (roi)</td><td>8-15 slides. Slide 1 = promesse. Slides courtes, visuelles</td></tr>
+      <tr><td><strong>Posts texte</strong></td><td style="font-weight:700">Bon</td><td>800-1600 caractères. Story corporate + insight</td></tr>
+      <tr><td><strong>Vidéos natives</strong></td><td style="font-weight:700">Moyen+</td><td>Extraits YouTube 2-4 min avec sous-titres</td></tr>
+    </table>
+    <div class="sources"><span class="source-badge src-perplexity">Perplexity</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Networking & Leads <span class="tag tag-action">ACTION</span></div>
+    <ul>
+      <li><strong>20-30 invitations/jour</strong> ciblées : dirigeants, RH, managers, founders SaaS, acteurs santé/medtech</li>
+      <li><strong>Message d'invit' :</strong> 1-2 lignes personnalisées, jamais de pitch direct</li>
+      <li><strong>Lead flow :</strong> Découverte → DM/commentaire → Call (sans pitch agressif) → Nurture via contenu</li>
+    </ul>
+    <div class="sources"><span class="source-badge src-perplexity">Perplexity</span></div>
+  </div>
+
+  <h3>Plan d'action 30 jours</h3>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-period">Semaines 1-2</div>
+      <p style="color:var(--text2)">3 posts/semaine : 1 PDF JCD ("Les 5 absurdités de la vie corporate") + 2 posts texte Omega/Santé. 20-30 connexions/jour ciblées.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-period">Semaines 3-4</div>
+      <p style="color:var(--text2)">4-5 posts/semaine dont 2 PDF (SaaS + Santé/medtech). Commencer à proposer un call découverte en PS des posts les plus engagés.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ CROSS-PLATFORM ═══════════════════════════════════ -->
+<section id="cross" class="platform-section">
+  <div class="platform-header">
+    <div class="platform-icon" style="background:rgba(139,92,246,0.15)">🔗</div>
+    <div>
+      <h2>Cross-Platform</h2>
+      <div class="role">Recyclage · Analytics · Growth Hacking avancé · Psychologie</div>
+    </div>
+  </div>
+
+  <h3>Recyclage intelligent</h3>
+
+  <div class="card">
+    <div class="card-title">Matrice de recyclage <span class="tag tag-action">ACTION</span></div>
+    <table>
+      <tr><th>Source</th><th>→ Destinations</th></tr>
+      <tr><td><strong>TikTok</strong></td><td>→ Shorts YouTube → Reels IG → Clips X</td></tr>
+      <tr><td><strong>YouTube Long</strong></td><td>→ Shorts/Reels (extraits) → PDF LinkedIn (synthèse) → Post long Facebook</td></tr>
+      <tr><td><strong>Threads X</strong></td><td>→ Carousels IG/LinkedIn → Scripts YouTube/TikTok</td></tr>
+    </table>
+    <div class="sources"><span class="source-badge src-perplexity">Perplexity</span></div>
+  </div>
+
+  <h3>Métriques cross-platform</h3>
+
+  <div class="card">
+    <div class="card-title">5 métriques par plateforme <span class="tag tag-data">DONNÉES</span></div>
+    <table>
+      <tr><th>Métrique</th><th>Mesure</th></tr>
+      <tr><td><strong>Découverte</strong></td><td>Impressions / reach</td></tr>
+      <tr><td><strong>Qualité</strong></td><td>Watch time moyen (vidéo) ou temps de lecture (X, LinkedIn)</td></tr>
+      <tr><td><strong>Engagement</strong></td><td>CTR, likes, commentaires, partages</td></tr>
+      <tr><td><strong>Conversion</strong></td><td>Clics sur lien bio / profil</td></tr>
+      <tr><td><strong>Fidélisation</strong></td><td>% vues par abonnés vs non-abonnés</td></tr>
+    </table>
+    <div class="sources"><span class="source-badge src-perplexity">Perplexity</span></div>
+  </div>
+
+  <h3>Growth Hacking avancé</h3>
+
+  <div class="card">
+    <div class="card-title">Techniques par plateforme <span class="tag tag-action">ACTION</span></div>
+    <ul>
+      <li><strong>Trend-jacking :</strong>
+        <ul>
+          <li>TikTok/IG : reprendre un son ou format tendance avec angle JCD/Santé/Omega</li>
+          <li>X : réagir très vite à l'actualité business/santé avec un thread expert</li>
+        </ul>
+      </li>
+      <li><strong>UGC :</strong> Demander aux gens de raconter leurs pires réunions / expériences médicales / crises existentielles → en faire des sketches/threads</li>
+      <li><strong>Controversy hooks :</strong> Avis tranchés mais argumentés, jamais attaquer des individus</li>
+    </ul>
+    <div class="sources"><span class="source-badge src-perplexity">Perplexity</span></div>
+  </div>
+
+  <h3>Psychologie & Copywriting</h3>
+
+  <div class="card">
+    <div class="card-title">Hooks universels <span class="tag tag-action">ACTION</span></div>
+    <ul>
+      <li>"3 erreurs que [type de personne] fait sans s'en rendre compte."</li>
+      <li>"Tu crois que [X], mais le vrai problème c'est [Y]."</li>
+      <li>"Ce que personne ne t'a dit sur [thème pro / santé / dev perso]."</li>
+      <li>"Je suis [profil], et voici ce que j'ai appris sur [sujet]."</li>
+    </ul>
+    <h4>Frameworks</h4>
+    <ul>
+      <li><strong>PAS</strong> (Problème – Agitation – Solution) → Santé/Omega</li>
+      <li><strong>Histoire courte → Insight → CTA</strong> → JCD/SaaS</li>
+    </ul>
+    <div class="sources"><span class="source-badge src-perplexity">Perplexity</span></div>
+  </div>
+
+  <h3>Timing optimal (France/Europe)</h3>
+
+  <div class="card">
+    <div class="card-title">Horaires par plateforme <span class="tag tag-opinion">OPINION EXPERT</span></div>
+    <table>
+      <tr><th>Plateforme</th><th>Horaires</th><th>Meilleurs jours</th></tr>
+      <tr><td>TikTok / IG / X</td><td>7h-9h, 12h-14h, 18h-21h</td><td>Tous les jours</td></tr>
+      <tr><td>YouTube Long</td><td>11h-15h</td><td>Fin de matinée</td></tr>
+      <tr><td>LinkedIn</td><td>8h-10h, 17h-18h</td><td>Lun-Jeu (B2B)</td></tr>
+      <tr><td>Facebook</td><td>12h-14h, 19h-21h</td><td>Mar-Jeu</td></tr>
+    </table>
+    <p style="color:var(--text3);font-size:12px;margin-top:8px">Dimanche soir : bon pour dev perso / introspection (Omega, Santé mentale).</p>
+    <div class="sources"><span class="source-badge src-perplexity">Perplexity</span></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ CHANGELOG ═══════════════════════════════════ -->
+<section style="margin-top:64px;padding-top:32px;border-top:1px solid var(--border)">
+  <h3 style="border:none;padding:0">Changelog</h3>
+  <table>
+    <tr><th>Version</th><th>Date</th><th>Sources</th><th>Changements</th></tr>
+    <tr><td>v1.0</td><td>22 Fév 2026</td><td><span class="source-badge src-perplexity">Perplexity</span></td><td>Création initiale — 6 plateformes + cross-platform</td></tr>
+    <tr style="color:var(--text3)"><td>v1.1</td><td>—</td><td><span class="source-badge src-claude">Claude</span></td><td>À venir</td></tr>
+    <tr style="color:var(--text3)"><td>v1.2</td><td>—</td><td><span class="source-badge src-gpt">GPT</span></td><td>À venir</td></tr>
+    <tr style="color:var(--text3)"><td>v1.3</td><td>—</td><td><span class="source-badge src-grok">Grok</span></td><td>À venir</td></tr>
+    <tr style="color:var(--text3)"><td>v1.4</td><td>—</td><td><span class="source-badge src-gemini">5ème IA</span></td><td>À venir</td></tr>
+  </table>
+</section>
+
+<div style="text-align:center;padding:48px 0 24px;color:var(--text3);font-size:12px">
+  Blueprint Growth Hacking — Ne M'Oublie Pas<br>
+  Document vivant · Ctrl+P pour imprimer en PDF
+</div>
+
+</div>
+</body>
+</html>
