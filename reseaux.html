@@ -1651,8 +1651,6 @@ document.getElementById("viewToggle").addEventListener("click",()=>{
   render();
 });
 
-render();
-
 // =============================================
 // GITHUB SYNC
 // =============================================
@@ -1664,11 +1662,10 @@ const GH={
   get token(){return localStorage.getItem("nmo_gh_token")},
   set token(v){if(v)localStorage.setItem("nmo_gh_token",v);else localStorage.removeItem("nmo_gh_token")},
   sha:null,
-  status:"idle", // idle|syncing|ok|err
+  status:"idle",
   lastSync:null,
   debounceTimer:null,
 
-  // Collect all NMO keys from localStorage
   collect(){
     const d={};
     for(let i=0;i<localStorage.length;i++){
@@ -1678,7 +1675,6 @@ const GH={
     return d;
   },
 
-  // Apply remote data to localStorage
   apply(data){
     if(!data||typeof data!=="object")return;
     Object.entries(data).forEach(([k,v])=>{
@@ -1686,7 +1682,6 @@ const GH={
     });
   },
 
-  // Pull from GitHub
   async pull(){
     if(!this.token)return false;
     this.setStatus("syncing");
@@ -1710,18 +1705,15 @@ const GH={
     }
   },
 
-  // Push to GitHub
   async push(){
     if(!this.token)return false;
     this.setStatus("syncing");
     try{
       const [owner,repo]=this.repo.split("/");
-      // Get latest SHA first
       const r0=await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${this.file}?ref=${this.branch}`,{
         headers:{"Authorization":"token "+this.token,"Accept":"application/vnd.github.v3+json"}
       });
       if(r0.ok){const j=await r0.json();this.sha=j.sha;}
-
       const payload={
         _meta:{version:1,app:"nmo-reseaux",lastSync:new Date().toISOString()},
         data:this.collect()
@@ -1732,7 +1724,6 @@ const GH={
         branch:this.branch
       };
       if(this.sha)body.sha=this.sha;
-
       const r=await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${this.file}`,{
         method:"PUT",
         headers:{"Authorization":"token "+this.token,"Accept":"application/vnd.github.v3+json","Content-Type":"application/json"},
@@ -1751,14 +1742,12 @@ const GH={
     }
   },
 
-  // Debounced push — called after any data change
   schedulePush(){
     if(!this.token)return;
     clearTimeout(this.debounceTimer);
     this.debounceTimer=setTimeout(()=>this.push(),5000);
   },
 
-  // Update UI status
   setStatus(s){
     this.status=s;
     const btn=document.getElementById("syncBtn");
@@ -1769,7 +1758,6 @@ const GH={
     if(s==="ok")setTimeout(()=>{if(this.status==="ok"){btn.className="sync-btn";if(lbl)lbl.textContent="Sync";}},3000);
   },
 
-  // Show setup modal
   showSetup(){
     const el=document.createElement("div");
     el.className="sync-setup";
@@ -1796,7 +1784,6 @@ const GH={
     });
   },
 
-  // Init — pull on first load
   async init(){
     if(this.token){
       await this.pull();
@@ -1805,14 +1792,14 @@ const GH={
   }
 };
 
-// Hook into localStorage saves — monkey-patch to auto-push
+// Hook into localStorage saves — auto-push
 const _origSetItem=localStorage.setItem.bind(localStorage);
 localStorage.setItem=function(k,v){
   _origSetItem(k,v);
   if(k.startsWith("nmo_")&&k!=="nmo_gh_token")GH.schedulePush();
 };
 
-// Init sync
+render();
 GH.init();
 </script>
 </body>
