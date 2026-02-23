@@ -703,6 +703,130 @@
       color: var(--accent); font-family: monospace;
     }
 
+    /* NETWORK VIEW — Sidebar left + Content right */
+    .net-layout { display: grid; grid-template-columns: 200px 1fr; gap: 0; min-height: 500px; }
+    .net-sidebar {
+      background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius) 0 0 var(--radius);
+      padding: 8px 0; display: flex; flex-direction: column; gap: 2px; overflow-y: auto;
+    }
+    .net-tab {
+      display: flex; align-items: center; gap: 10px; padding: 10px 14px; cursor: pointer;
+      border: none; background: transparent; color: var(--text-3); font: inherit; font-size: 13px;
+      font-weight: 500; transition: all 120ms var(--ease); text-align: left; border-left: 3px solid transparent;
+      white-space: nowrap;
+    }
+    .net-tab:hover { background: var(--bg-hover); color: var(--text-2); }
+    .net-tab.active { background: var(--bg-hover); color: var(--text); border-left-color: var(--accent); font-weight: 600; }
+    .net-tab-icon { width: 24px; height: 24px; border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .net-tab-icon svg { width: 12px; height: 12px; fill: white; }
+    .net-tab-icon.twitter { background: var(--twitter); }
+    .net-tab-icon.youtube { background: var(--youtube); }
+    .net-tab-icon.instagram { background: var(--insta); }
+    .net-tab-icon.facebook { background: var(--facebook); }
+    .net-tab-icon.linkedin { background: var(--linkedin); }
+    .net-tab-icon.tiktok { background: var(--tiktok); }
+    .net-tab-icon.funnel { background: var(--accent); }
+    .net-tab-icon.cross { background: var(--text-3); }
+    .net-tab-count { font-size: 10px; font-weight: 700; margin-left: auto; padding: 1px 6px; border-radius: 8px; background: var(--bg-active); color: var(--text-3); }
+
+    .net-content {
+      background: var(--bg-surface); border: 1px solid var(--border); border-left: none;
+      border-radius: 0 var(--radius) var(--radius) 0; padding: 20px 24px; overflow-y: auto; max-height: 80vh;
+    }
+    .net-content-title { font-size: 20px; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 4px; }
+    .net-content-role { font-size: 12px; color: var(--text-3); margin-bottom: 20px; }
+
+    /* Stats row */
+    .net-stats-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 8px; margin-bottom: 20px; }
+    .net-stat-box {
+      background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm);
+      padding: 12px 14px; text-align: center;
+    }
+    .net-stat-box-val { font-size: 20px; font-weight: 800; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+    .net-stat-box-lbl { font-size: 10px; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.03em; margin-top: 2px; }
+
+    /* Knowledge cards */
+    .net-kcard {
+      background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm);
+      padding: 14px 16px; margin-bottom: 10px;
+    }
+    .net-kcard-title { font-size: 13px; font-weight: 700; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+    .net-kcard-tag { font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.03em; }
+    .net-kcard-tag.data { background: rgba(139,92,246,0.15); color: var(--accent); }
+    .net-kcard-tag.tip { background: rgba(34,197,94,0.15); color: var(--green); }
+    .net-kcard-tag.warn { background: rgba(239,68,68,0.15); color: var(--red); }
+    .net-kcard p, .net-kcard li { font-size: 12px; color: var(--text-2); line-height: 1.6; }
+    .net-kcard ul, .net-kcard ol { padding-left: 16px; margin-top: 4px; }
+    .net-kcard li { margin-bottom: 3px; }
+    .net-kcard table { width: 100%; border-collapse: collapse; margin-top: 6px; font-size: 11px; }
+    .net-kcard th { text-align: left; font-weight: 700; color: var(--text-3); font-size: 10px; text-transform: uppercase; letter-spacing: 0.03em; padding: 6px 8px; border-bottom: 1px solid var(--border); }
+    .net-kcard td { padding: 5px 8px; border-bottom: 1px solid var(--border); color: var(--text-2); }
+    .net-kcard strong { color: var(--text); }
+
+    /* Callout inside knowledge */
+    .net-callout { padding: 10px 14px; border-radius: var(--radius-sm); margin-top: 8px; font-size: 12px; line-height: 1.6; }
+    .net-callout.info { background: rgba(139,92,246,0.08); border-left: 3px solid var(--accent); color: var(--text-2); }
+    .net-callout.warn { background: rgba(239,68,68,0.08); border-left: 3px solid var(--red); color: var(--text-2); }
+    .net-callout.tip { background: rgba(34,197,94,0.08); border-left: 3px solid var(--green); color: var(--text-2); }
+    .net-callout-title { font-size: 11px; font-weight: 700; margin-bottom: 4px; }
+
+    /* Section dividers */
+    .net-section { margin-bottom: 20px; }
+    .net-section-title { font-size: 11px; font-weight: 700; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+
+    /* Tracking update form */
+    .net-update {
+      background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm);
+      padding: 14px 16px; margin-bottom: 10px;
+    }
+    .net-update-title { font-size: 10px; font-weight: 700; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 10px; }
+    .net-update-grid { display: flex; flex-wrap: wrap; gap: 8px; align-items: flex-end; }
+    .net-update-field { display: flex; flex-direction: column; gap: 2px; }
+    .net-update-field label { font-size: 10px; color: var(--text-3); }
+    .net-update-field input {
+      width: 100px; height: 30px; background: var(--bg-surface); border: 1px solid var(--border);
+      border-radius: var(--radius-xs); padding: 0 8px; color: var(--text); font: inherit; font-size: 12px;
+      outline: none; font-variant-numeric: tabular-nums;
+    }
+    .net-update-field input:focus { border-color: var(--accent); }
+    .net-update-field select {
+      height: 30px; background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius-xs);
+      color: var(--text-2); font: inherit; font-size: 11px; padding: 0 8px; outline: none; cursor: pointer;
+    }
+    .net-save-btn {
+      height: 30px; padding: 0 14px; border: none; border-radius: var(--radius-sm);
+      background: var(--accent); color: #fff; font: inherit; font-size: 11px; font-weight: 600;
+      cursor: pointer; transition: all 150ms var(--ease);
+    }
+    .net-save-btn:hover { opacity: 0.88; }
+
+    /* Health badges */
+    .net-health { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 12px; }
+    .net-health.healthy { color: var(--green); background: rgba(34,197,94,0.1); }
+    .net-health.warning { color: var(--amber); background: rgba(245,158,11,0.1); }
+    .net-health.danger { color: var(--red); background: rgba(239,68,68,0.1); }
+    .net-health.unknown { color: var(--text-3); background: var(--bg-hover); }
+
+    /* Sparkline */
+    .net-spark { height: 40px; display: flex; align-items: flex-end; gap: 2px; margin-bottom: 10px; }
+    .net-spark-bar { flex: 1; min-width: 4px; border-radius: 2px 2px 0 0; transition: height 300ms var(--ease); }
+
+    /* Tasks inside network */
+    .net-tasks-title { font-size: 10px; font-weight: 700; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 8px; }
+
+    /* Responsive sidebar */
+    @media (max-width: 820px) {
+      .net-layout { grid-template-columns: 1fr; }
+      .net-sidebar { flex-direction: row; overflow-x: auto; border-radius: var(--radius) var(--radius) 0 0; padding: 4px 8px; gap: 0; }
+      .net-tab { border-left: none; border-bottom: 3px solid transparent; padding: 8px 12px; font-size: 12px; }
+      .net-tab.active { border-bottom-color: var(--accent); border-left-color: transparent; }
+      .net-content { border-left: 1px solid var(--border); border-radius: 0 0 var(--radius) var(--radius); max-height: none; }
+    }
+    @media (max-width: 480px) {
+      .net-stats-row { grid-template-columns: repeat(2, 1fr); }
+      .net-tab-count { display: none; }
+    }
+
     /* CONFETTI */
     #confetti { position: fixed; inset: 0; pointer-events: none; z-index: 999; }
 
@@ -761,6 +885,11 @@
       .series-strip { grid-template-columns: repeat(2, 1fr); }
       .prod-filters { margin-left: 0; }
       .bottom { grid-template-columns: 1fr; }
+      .net-layout { grid-template-columns: 1fr; }
+      .net-sidebar { flex-direction: row; overflow-x: auto; border-radius: var(--radius) var(--radius) 0 0; }
+      .net-content { border-left: 1px solid var(--border); border-radius: 0 0 var(--radius) var(--radius); }
+      .net-tab { border-left: none; border-bottom: 3px solid transparent; padding: 8px 12px; }
+      .net-tab.active { border-bottom-color: var(--accent); border-left-color: transparent; }
     }
     @media (max-width: 700px) {
       .app { padding: 20px 14px 40px; }
@@ -797,6 +926,7 @@
       <div class="header-right">
         <button class="sync-btn" id="syncBtn" title="Réglages">&#x2699;</button>
         <div class="mode-toggle">
+          <a href="reseaux.html" class="mode-btn" style="text-decoration:none;">R&eacute;seaux</a>
           <button class="mode-btn" id="modeProdBtn" data-mode="production">Production</button>
           <button class="mode-btn" id="modePrepBtn" data-mode="prep">Pr&eacute;paration</button>
           <button class="mode-btn active" id="modePubBtn" data-mode="pub">Publication</button>
@@ -854,6 +984,7 @@
     <div id="prodTabs"></div>
     <div id="prodContent"></div>
   </div>
+
 
 </div>
 
@@ -1177,6 +1308,134 @@ const DAYS = ["Lun","Mar","Mer","Jeu","Ven","Sam","Dim"];
 const MONTHS = ["Janvier","F\u00e9vrier","Mars","Avril","Mai","Juin","Juillet","Ao\u00fbt","Septembre","Octobre","Novembre","D\u00e9cembre"];
 
 // ============================================
+// NETWORK TRACKING
+// ============================================
+const NETWORKS = {
+  tiktok:    { handle:"@mr_leevy", url:"https://www.tiktok.com/@mr_leevy", metrics:["followers","following","likes","videos"] },
+  twitter:   { handle:"@mr_leevy", url:"https://x.com/mr_leevy",           metrics:["followers","following","tweets"] },
+  instagram: { handle:"@mr_leevy", url:"https://www.instagram.com/mr_leevy", metrics:["followers","following","posts"] },
+  facebook:  { handle:"mr.leevy",  url:"https://www.facebook.com/mr.leevy", metrics:["followers","friends"] },
+  youtube:   { handle:"@mr_leevy", url:"https://www.youtube.com/@mr_leevy", metrics:["subscribers","videos","views"] },
+  linkedin:  { handle:"mr_leevy",  url:"https://www.linkedin.com/in/mr-leevy", metrics:["followers","connections"] },
+};
+const NET_METRIC_LABELS = {
+  followers:"Abonn\u00e9s", following:"Abonnements", likes:"Likes", videos:"Vid\u00e9os",
+  tweets:"Tweets", posts:"Posts", friends:"Amis", subscribers:"Abonn\u00e9s",
+  views:"Vues", connections:"Connexions"
+};
+const NET_HEALTH_LABELS = {
+  healthy:"Sain", warning:"Attention", danger:"Shadowban probable", unknown:"Non v\u00e9rifi\u00e9"
+};
+
+// Blueprint knowledge — extracted from blueprint-growth.html v1.4
+const NETGUIDE = {
+  funnel:{
+    name:"Funnel",icon:"\u{1F504}",role:"D\u00e9couverte \u2192 Cr\u00e9dibilit\u00e9 \u2192 Conversion \u2192 Preuve \u2192 Image \u2192 Premium",
+    stats:[],
+    cards:[
+      {title:"Le Funnel Be Simple",tag:"data",content:`<table><tr><th>\u00c9tape</th><th>Plateforme</th><th>R\u00f4le</th></tr><tr><td>1. D\u00e9couverte</td><td><strong style="color:var(--tiktok)">TikTok</strong></td><td>Attention froide, viralité</td></tr><tr><td>2. Crédibilité</td><td><strong style="color:var(--twitter)">X/Twitter</strong></td><td>Expertise rapide, threads</td></tr><tr><td>3. Conversion</td><td><strong style="color:var(--facebook)">Facebook</strong></td><td>Communauté, fidélisation</td></tr><tr><td>4. Preuve</td><td><strong style="color:var(--youtube)">YouTube</strong></td><td>Contenu en profondeur</td></tr><tr><td>5. Image</td><td><strong style="color:var(--insta)">Instagram</strong></td><td>Aspiration, lifestyle</td></tr><tr><td>6. Premium</td><td><strong style="color:var(--linkedin)">LinkedIn</strong></td><td>B2B, deals</td></tr></table>`},
+      {title:"S\u00e9ries \u00d7 Plateformes",tag:"data",content:`<table><tr><th>Série</th><th>Plateformes</th><th>Rôle</th></tr><tr><td><strong style="color:#F59E0B">JCD</strong></td><td>TikTok, Instagram, Facebook, YouTube</td><td>Humour corporate</td></tr><tr><td><strong style="color:#8B5CF6">SaaS</strong></td><td>X, LinkedIn, YouTube</td><td>Build-in-public</td></tr><tr><td><strong style="color:#EC4899">Santé</strong></td><td>X, LinkedIn, YouTube</td><td>Expertise médicale</td></tr><tr><td><strong style="color:#22C55E">Omega</strong></td><td>Cross-platform</td><td>Philosophie Be Simple</td></tr></table>`},
+      {title:"Hub & Spoke — Recyclage",tag:"tip",content:`<p>1 contenu pilier → 6 déclinaisons. YouTube 15min → 3-5 Shorts + 3-5 TikToks + 3-5 Reels + 1 PDF LinkedIn + 1 thread X + 1 post FB.</p><p><strong>PAS du repost.</strong> Du RE-PACKAGING par plateforme.</p>`},
+      {title:"Workflow Batching",tag:"tip",content:`<ul><li><strong>Jour 1 "Batch"</strong> — Créer ~20-25 contenus bruts (tous réseaux)</li><li><strong>Jour 2 "Polish"</strong> — Montage, scheduling (35 pièces prêtes)</li><li><strong>Jours 3-7</strong> — Engagement only (replies, DMs, communautés)</li></ul><div class="net-callout warn"><div class="net-callout-title">23 min de reconcentration</div>Chaque changement de tâche coûte 23 min. C'est pourquoi le batching est critique.</div>`}
+    ]
+  },
+  tiktok:{
+    name:"TikTok",icon:"\u{1F3B5}",cls:"tiktok",role:"D\u00e9couverte / Attention froide \u2014 JCD \u00d7 Omega",
+    stats:[{v:"3-5",l:"Vid\u00e9os/jour"},{v:"12-25s",l:"Dur\u00e9e sketch"},{v:">65%",l:"Compl\u00e9tion cible"},{v:"30j",l:"Classifier"}],
+    cards:[
+      {title:"Algo Monolith + Multi-Signal",tag:"data",content:`<p>TikTok utilise <strong>Monolith</strong> — réseau de neurones temps réel. Chaque vidéo évaluée dynamiquement. En 2026, <strong>multi-signal indexing</strong> :</p><ol><li><strong>Mots-clés parlés</strong> — transcription auto</li><li><strong>Texte écran</strong> — overlay = mots-clés secondaires</li><li><strong>Reconnaissance visuelle IA</strong> — code = SaaS, stéthoscope = Santé</li><li><strong>Légendes</strong> — courtes, riches en mots-clés</li><li><strong>Hashtags</strong> — catégorisation, PAS viralité</li></ol>`},
+      {title:"Signaux de ranking FYP",tag:"data",content:`<table><tr><th>Signal</th><th>Poids</th><th>Action</th></tr><tr><td><strong>Watch time</strong></td><td style="color:var(--tiktok);font-weight:700">40-50%</td><td>70% viewers doivent voir >50% de la vidéo</td></tr><tr><td><strong>Shares + Saves</strong></td><td style="color:var(--amber);font-weight:700">~25%</td><td>DM shares = signal le plus fort</td></tr><tr><td><strong>Commentaires</strong></td><td>20-30%</td><td>Engagement actif + rétention</td></tr><tr><td><strong>Likes</strong></td><td style="color:var(--text-3)">5-10%</td><td>Signal le plus FAIBLE</td></tr></table>`},
+      {title:"Batch Testing",tag:"data",content:`<ul><li><strong>Batch 1 :</strong> 200-500 impressions → complétion + partages > moyenne ?</li><li><strong>Batch 2 :</strong> ~5 000 impressions</li><li><strong>Batch 3 :</strong> ~50 000 impressions</li><li><strong>Batch 4 :</strong> 500K+ → Viralité</li></ul>`},
+      {title:"Cross-post = -40% reach",tag:"warn",content:`<p>TikTok détecte les watermarks d'autres plateformes. <strong>Toujours poster la version propre sur TikTok en premier</strong>, puis recycler.</p>`},
+      {title:"Prison des 200 vues = normal",tag:"tip",content:`<p>Si tes 5-10 premières vidéos stagnent à 200 vues, c'est normal. L'algo teste ta constance. <strong>Ne supprime rien, ne change pas de niche.</strong> Poste 20-30 vidéos de plus.</p>`},
+      {title:"Lo-Fi > Overproduced",tag:"tip",content:`<p>Le contenu authentique (filmé au téléphone) surpasse souvent le contenu produit. L'authenticité = plus de watch time, plus de partages.</p>`},
+      {title:"Format AIPD",tag:"data",content:`<table><tr><th>Phase</th><th>Timing</th><th>Objectif</th></tr><tr><td>Attention</td><td>0-3s</td><td>Hook visuel/verbal</td></tr><tr><td>Intérêt</td><td>3-30s</td><td>Problème/tension</td></tr><tr><td>Preuve</td><td>30-50s</td><td>Révélation</td></tr><tr><td>Demande</td><td>50-60s</td><td>CTA</td></tr></table><p style="margin-top:6px"><strong>Goldilocks : 45-60s</strong> = haute complétion + valeur profonde.</p>`}
+    ]
+  },
+  twitter:{
+    name:"X / Twitter",icon:"\ud835\udd4f",cls:"twitter",role:"Cr\u00e9dibilit\u00e9 / Expertise rapide \u2014 SaaS \u00d7 Sant\u00e9 \u00d7 Omega",
+    stats:[{v:"3-5",l:"Tweets/jour"},{v:"1-2",l:"Threads/sem"},{v:"20-40",l:"Replies/jour"},{v:"30/70",l:"Cr\u00e9ation/Engage"}],
+    cards:[
+      {title:"Poids algo (code source)",tag:"data",content:`<table><tr><th>Signal</th><th>Poids</th><th>Implication</th></tr><tr><td><strong>Retweets</strong></td><td style="font-weight:700">20</td><td>Signal #1. Crée du contenu partageable.</td></tr><tr><td><strong>Replies</strong></td><td style="font-weight:700">13.5</td><td>Les conversations boostent massivement.</td></tr><tr><td><strong>Reply by Author</strong></td><td style="color:var(--green);font-weight:700">+75</td><td>Répondre à tes propres replies = MEGA boost</td></tr><tr><td><strong>Bookmarks</strong></td><td style="font-weight:700">10</td><td>Contenu "à garder"</td></tr><tr><td><strong>Profile Clicks</strong></td><td>+12</td><td>Tweet → visite profil</td></tr><tr><td><strong>Likes</strong></td><td style="color:var(--text-3)">0.5</td><td>40x plus faible que RT</td></tr></table>`},
+      {title:"Premium = 10x reach",tag:"warn",content:`<p>Sans Blue : score <strong>-128</strong> (pénalisé). Avec Blue : <strong>+100</strong> (boosté). Code source X : 4x in-network, 2x out-network. <strong>Meilleur ROI de tout le funnel.</strong></p>`},
+      {title:"Author Diversity penalty",tag:"warn",content:`<p>10+ tweets rapprochés = dilution. <strong>Espace 1-2h minimum</strong> entre tweets. Qualité > Quantité.</p>`},
+      {title:"Liens morts depuis mars 2025",tag:"warn",content:`<p>Les liens externes sont pénalisés pour les comptes non-Premium. <strong>Pas de lien dans le tweet.</strong> Mets-le en reply ou en bio.</p>`},
+      {title:"Threads +63% engagement",tag:"tip",content:`<p>Optimal : <strong>4-8 tweets</strong>. Structure : Hook → Corps → CTA. Thread SaaS : metrics → erreurs → leçons. Thread Santé : claim → preuves → action.</p>`},
+      {title:"Reply Guy strategy",tag:"tip",content:`<p>Répondre aux gros comptes <strong>2-3 min</strong> ou <strong>5-20 min</strong> après leur post. 150x le poids d'un like. 20-40 replies/jour ciblées.</p>`}
+    ]
+  },
+  facebook:{
+    name:"Facebook",icon:"\u{1F4D8}",cls:"facebook",role:"Conversion / Communaut\u00e9 \u2014 JCD \u00d7 Omega \u00d7 SaaS",
+    stats:[{v:"3-5",l:"Reels/sem"},{v:"3",l:"Posts/sem"},{v:"1",l:"Live/sem"},{v:"P+G",l:"Page+Groupe"}],
+    cards:[
+      {title:"50% du feed = non-connect\u00e9s",tag:"data",content:`<p>Facebook copie le modèle TikTok. <strong>50% du contenu montré vient de créateurs non-suivis.</strong> Opportunité massive pour les nouveaux comptes.</p>`},
+      {title:"Profil perso = 5x Pages",tag:"data",content:`<p>Le profil personnel a <strong>5x plus de reach</strong> que les Pages business. Poste en tant que personne, pas en tant que marque. Active le <strong>Mode Professionnel</strong> pour avoir followers + stats.</p>`},
+      {title:"Toutes les vid\u00e9os = Reels",tag:"data",content:`<p>Depuis juin 2025, <strong>toutes les vidéos Facebook sont des Reels</strong>. Plus de distinction. Engagement Reels : 2.46%. Photos : +34.7% vs texte.</p>`},
+      {title:"Messenger = arme secr\u00e8te",tag:"tip",content:`<p><1% des business l'utilisent mais <strong>50-80% taux d'ouverture</strong> (vs 20-25% email). Lead Ads → Messenger = <strong>12.5% conversion</strong>.</p>`},
+      {title:"Lives expirent \u00e0 30 jours",tag:"warn",content:`<p>Repackage en vidéo longue YouTube dans la semaine ou le contenu disparaît.</p>`},
+      {title:"Groupe > Page publique",tag:"tip",content:`<p>Engagement groupe = <strong>+40%</strong> vs page publique. Créer un groupe autour de ta thématique.</p>`}
+    ]
+  },
+  youtube:{
+    name:"YouTube",icon:"\u25b6\ufe0f",cls:"youtube",role:"Preuve en profondeur \u2014 JCD \u00d7 SaaS \u00d7 Sant\u00e9",
+    stats:[{v:"1-2",l:"Shorts/jour"},{v:"1",l:"Long/sem"},{v:"15-25m",l:"Dur\u00e9e long"},{v:"25-45s",l:"Dur\u00e9e Short"}],
+    cards:[
+      {title:"Satisfaction Score > Watch Time",tag:"data",content:`<p>~70% du poids. Remplace le watch time brut. 8min avec haute satisfaction bat 20min avec basse satisfaction. Mesuré par : surveys + likes/dislikes + retour du viewer.</p>`},
+      {title:"5 algorithmes s\u00e9par\u00e9s",tag:"data",content:`<table><tr><th>Surface</th><th>% vues</th><th>Signal principal</th></tr><tr><td>Home/Suggestions</td><td>40%</td><td>CTR + Satisfaction + historique</td></tr><tr><td>Suggested (sidebar)</td><td>30%</td><td>Similarité + co-watching</td></tr><tr><td>Search</td><td>10%</td><td>SEO titre/desc + CTR + watch time</td></tr><tr><td>Shorts feed</td><td>séparé</td><td>Swipe rate + replays + partages</td></tr><tr><td>Notifications</td><td>5%</td><td>Bell subs + 1ère heure</td></tr></table>`},
+      {title:"Patience : 16 mois m\u00e9diane pour 1K",tag:"warn",content:`<p>68% des chaînes ont besoin de <strong>40+ vidéos</strong>. C'est un marathon. Constance > talent.</p>`},
+      {title:"Shorts \u2260 heures long-form",tag:"warn",content:`<p>Compteurs séparés. Shorts : 3M vues en 90j pour le tier 1. Long-form : 4000h en 12 mois pour la monétisation complète. <strong>Les heures Shorts ne comptent pas pour les 4000h.</strong></p>`},
+      {title:"Mix Shorts + Long = +40-60% croissance",tag:"tip",content:`<p>Les Shorts drive la découverte. Le long-form convertit en abonnés loyaux. Les deux ensemble = croissance accélérée.</p>`},
+      {title:"Hype (2026)",tag:"data",content:`<p>Nouvelle feature : les fans peuvent booster une vidéo dans les 7 premiers jours (chaînes 500-500K subs). Levier de croissance organique majeur.</p>`}
+    ]
+  },
+  instagram:{
+    name:"Instagram",icon:"\u{1F4F8}",cls:"instagram",role:"Image / Aspiration \u2014 JCD \u00d7 Omega",
+    stats:[{v:"1",l:"Reel/jour"},{v:"2-3",l:"Carousels/sem"},{v:"3-5",l:"Stories/jour"},{v:"3-5",l:"Hashtags/post"}],
+    cards:[
+      {title:"\"Your Algorithm\" (d\u00e9c. 2025)",tag:"data",content:`<p>Les utilisateurs peuvent reset leur feed. L'engagement authentique est récompensé. Les <strong>9-12 derniers posts</strong> déterminent ta catégorisation.</p>`},
+      {title:"DM Sends = 3-5x likes",tag:"data",content:`<p>Crée du contenu que les gens veulent <strong>envoyer à un ami par DM</strong>. C'est LE signal le plus puissant sur Instagram.</p>`},
+      {title:"Carousels = 3.1x engagement",tag:"data",content:`<p>Le swipe interaction booste le dwell time. <strong>7-10 slides</strong>. Slide 1 = promesse. Dernière slide = CTA ("Save/share").</p>`},
+      {title:"Trial Reels = test safe",tag:"tip",content:`<p>Montre les Reels <strong>uniquement aux non-followers d'abord</strong> pour tester. Les Reels performants sont ensuite pushés vers Explore. Semaines 1-2 : 14 Trial Reels.</p>`},
+      {title:"Reels atteignent 125%+ non-followers",tag:"data",content:`<p>Les Reels sont le format #1 pour la découverte. Recycler le meilleur TikTok du jour + clean cover + longue caption.</p>`},
+      {title:"Collab posts = +34%",tag:"tip",content:`<p>Partager avec un autre créateur simultanément booste l'engagement de 34%.</p>`}
+    ]
+  },
+  linkedin:{
+    name:"LinkedIn",icon:"\u{1F4BC}",cls:"linkedin",role:"Premium / B2B / Deals \u2014 SaaS \u00d7 Sant\u00e9 \u00d7 Omega",
+    stats:[{v:"3-5",l:"Posts/sem"},{v:"1-2",l:"PDF Carousels/sem"},{v:"20-30",l:"Invitations/jour"},{v:"MAX 1",l:"Post/jour"}],
+    cards:[
+      {title:"Depth Score (2026)",tag:"data",content:`<p>Nouveau système. Mesure la <strong>qualité</strong> de l'engagement :</p><ul><li>Dwell time pondéré par longueur du post</li><li>Commentaires substantifs (>20 mots) = <strong>3x</strong> un "Super !"</li><li>Profile clicks, reshares avec commentaire ajouté</li></ul>`},
+      {title:"Dwell Time = ~40% du poids",tag:"data",content:`<p>Favorise le long-form. MAIS : dwell time court = <strong>signal négatif</strong> (anti-dwell bait). Texte optimal : <strong>1500-2000 caractères</strong>.</p>`},
+      {title:"Pods = 97% d\u00e9tect\u00e9s, -80% reach",tag:"warn",content:`<p>L'IA de LinkedIn est extrêmement précise. <strong>N'utilise JAMAIS de pods d'engagement.</strong></p>`},
+      {title:"PDF Carousels = ROI #1",tag:"data",content:`<p><strong>5.85-6.6% engagement</strong>. 10-20 slides. Slide 1 = promesse. 4x reach vs post texte. Meilleur format LinkedIn.</p>`},
+      {title:"Commenter d'abord (3 semaines)",tag:"tip",content:`<p>Ne poste pas tout de suite. <strong>Semaines 1-3</strong> : commente les gros influenceurs, ajoute 10 personnes/jour. <strong>Semaine 4+</strong> : commence à poster 3x/sem.</p>`},
+      {title:"Relevance > Recency (juin 2025)",tag:"data",content:`<p>Les posts de 2-3 semaines sont encore montrés s'ils sont pertinents. Le contenu evergreen a une durée de vie beaucoup plus longue maintenant.</p>`},
+      {title:"Seulement 1.1% publient chaque semaine",tag:"tip",content:`<p>Poster 3-5x/semaine te place dans le <strong>top 2%</strong> d'activité. Le simple fait d'être régulier = avantage massif.</p>`}
+    ]
+  },
+  cross:{
+    name:"Cross-Platform",icon:"\u{1F310}",role:"Recyclage \u00b7 Analytics \u00b7 Growth Hacking",
+    stats:[{v:"1\u21926",l:"Hub\u2192Spokes"},{v:"72h",l:"1 id\u00e9e\u219212 assets"},{v:"60-90j",l:"Cycle recyclage"},{v:"23min",l:"Co\u00fbt context-switch"}],
+    cards:[
+      {title:"Matrice de recyclage",tag:"data",content:`<table><tr><th>Source</th><th>→ Déclinaisons</th></tr><tr><td>TikTok</td><td>→ YouTube Shorts + IG Reels + X Clips</td></tr><tr><td>YouTube Long</td><td>→ Shorts/Reels (extraits) + PDF LinkedIn + FB post</td></tr><tr><td>X Threads</td><td>→ IG/LinkedIn Carousels + YT/TikTok scripts</td></tr></table><p style="margin-top:6px">1 idée → <strong>30 posts</strong> possibles. Recycler l'evergreen tous les 60-90 jours.</p>`},
+      {title:"Watermark = p\u00e9nalit\u00e9 partout",tag:"warn",content:`<p>TikTok -40%, Instagram pénalise les watermarks TikTok, YouTube baisse le push Shorts. <strong>Toujours poster la version propre en premier.</strong></p>`},
+      {title:"Hooks universels",tag:"tip",content:`<ul><li>"3 erreurs que [type] commet"</li><li>"Tu penses [X] mais le vrai problème c'est [Y]"</li><li>"Ce que personne ne te dit sur [thème]"</li><li>"Je suis [profil], voilà ce que j'ai appris"</li></ul>`},
+      {title:"CTAs par plateforme",tag:"tip",content:`<table><tr><th>Plateforme</th><th>CTA optimal</th></tr><tr><td>TikTok</td><td>"Follow pour la partie 2" / "Lien en bio"</td></tr><tr><td>X</td><td>"RT si t'es d'accord" / "Bookmark pour plus tard"</td></tr><tr><td>LinkedIn</td><td>"DM pour en discuter" / "Commente ton expérience"</td></tr><tr><td>Instagram</td><td>"Save this" / "Partage en story"</td></tr></table>`},
+      {title:"Frameworks hooks",tag:"data",content:`<ul><li><strong>PAS</strong> (Problème → Agitation → Solution) = Santé/Omega</li><li><strong>AIDA</strong> (Attention → Intérêt → Désir → Action) = SaaS/LinkedIn</li><li><strong>Story → Insight → CTA</strong> = JCD/SaaS</li></ul>`},
+      {title:"Biais cognitifs (usage \u00e9thique)",tag:"tip",content:`<ul><li><strong>Social proof</strong> : "500 personnes ont déjà…"</li><li><strong>Scarcity</strong> : "Seulement cette semaine…"</li><li><strong>Curiosity gap</strong> : "Ce que personne ne te dit…"</li><li><strong>Contrarian</strong> : "Tout le monde a tort sur…"</li></ul>`}
+    ]
+  }
+};
+let netActiveTab = "funnel";
+
+function loadNetStats(){ const r=localStorage.getItem("nmo_netstats"); return r?JSON.parse(r):{}; }
+function saveNetStats(d){ localStorage.setItem("nmo_netstats",JSON.stringify(d)); }
+function loadNetHistory(){ const r=localStorage.getItem("nmo_nethistory"); return r?JSON.parse(r):[]; }
+function saveNetHistory(d){ localStorage.setItem("nmo_nethistory",JSON.stringify(d)); }
+function loadNetHealth(){ const r=localStorage.getItem("nmo_nethealth"); return r?JSON.parse(r):{}; }
+function saveNetHealth(d){ localStorage.setItem("nmo_nethealth",JSON.stringify(d)); }
+
+// ============================================
 // STATE
 // ============================================
 let weekStart = getMonday(new Date());
@@ -1497,7 +1756,7 @@ document.getElementById("prevWeek").addEventListener("click",()=>{weekStart=new 
 document.getElementById("nextWeek").addEventListener("click",()=>{weekStart=new Date(weekStart);weekStart.setDate(weekStart.getDate()+7);render();});
 document.getElementById("todayBtn").addEventListener("click",()=>{weekStart=getMonday(new Date());render();});
 
-let view="main"; // "main" or "production"
+let view="main"; // "main","production"
 const mainEls=["motivLine","gauges","calendar"];
 const mainBottom=document.querySelector(".bottom");
 const mainQuote=document.getElementById("quote");
@@ -1728,13 +1987,122 @@ function renderFocus(){
 function renderNetworkView(pc){
   const prep=load(weekStart,"prep"),pub=load(weekStart,"pub"),notes=loadNotes(weekStart);
   const isCur=wk(weekStart)===wk(getMonday(new Date())),tIdx=todayIdx();
+  const nStats=loadNetStats(),history=loadNetHistory(),health=loadNetHealth();
 
-  let h='';
-  for(const [pid,pl] of Object.entries(P)){
-    // Collect all tasks for this platform this week
+  // Tab order: funnel + platforms in funnel order + cross
+  const tabOrder=["funnel","tiktok","twitter","facebook","youtube","instagram","linkedin","cross"];
+
+  // --- SIDEBAR ---
+  let sb='<div class="net-sidebar">';
+  tabOrder.forEach(tid=>{
+    const g=NETGUIDE[tid];
+    const isP=!!P[tid]; // is a platform with tasks
+    const active=netActiveTab===tid;
+    // Task count badge for platforms
+    let badge="";
+    if(isP){
+      let cnt=0;
+      for(let d=0;d<7;d++)PLAN[d].forEach(t=>{if(t.p===tid)cnt++;});
+      badge=`<span class="net-tab-count">${cnt}</span>`;
+    }
+    const iconCls=g.cls||tid;
+    const iconHtml=ICONS[tid]?`<div class="net-tab-icon ${iconCls}">${ICONS[tid]}</div>`:`<div class="net-tab-icon ${iconCls}" style="font-size:12px">${g.icon}</div>`;
+    sb+=`<button class="net-tab${active?" active":""}" data-ntab="${tid}">${iconHtml}<span>${g.name}</span>${badge}</button>`;
+  });
+  sb+='</div>';
+
+  // --- CONTENT ---
+  const tid=netActiveTab;
+  const g=NETGUIDE[tid];
+  const isP=!!P[tid];
+  const pl=P[tid];
+  const net=NETWORKS[tid];
+  const pStats=nStats[tid]||{};
+  const pHealth=health[tid]||"unknown";
+  const cssVar=tid==="instagram"?"insta":(pl?pl.cls:tid);
+
+  let ct='<div class="net-content">';
+
+  // Title + role
+  const titleColor=pl?`color:var(--${cssVar})`:(tid==="funnel"?"color:var(--accent)":"");
+  ct+=`<div class="net-content-title" style="${titleColor}">${g.name}</div>`;
+  ct+=`<div class="net-content-role">${g.role}</div>`;
+
+  // === TRACKING SECTION (platforms only) ===
+  if(isP&&net){
+    ct+=`<div class="net-section">`;
+    ct+=`<div class="net-section-title">Tracking \u2014 ${net.handle}</div>`;
+
+    // Health badge
+    const hCls=pHealth==="healthy"?"healthy":pHealth==="warning"?"warning":pHealth==="danger"?"danger":"unknown";
+    ct+=`<div style="margin-bottom:10px"><span class="net-health ${hCls}">${NET_HEALTH_LABELS[pHealth]}</span></div>`;
+
+    // Metrics row
+    ct+=`<div class="net-stats-row">`;
+    net.metrics.forEach(m=>{
+      const val=pStats[m];
+      ct+=`<div class="net-stat-box"><div class="net-stat-box-val" style="color:var(--${cssVar})">${val!=null?Number(val).toLocaleString("fr-FR"):"\u2014"}</div><div class="net-stat-box-lbl">${NET_METRIC_LABELS[m]||m}</div></div>`;
+    });
+    ct+=`</div>`;
+
+    // Sparkline
+    const sparkData=history.filter(e=>e.pid===tid).slice(-12).map(e=>e.followers||e.subscribers||0);
+    if(sparkData.length>1){
+      const maxVal=Math.max(...sparkData,1);
+      ct+=`<div style="font-size:10px;font-weight:700;color:var(--text-3);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:6px">\u00c9volution</div>`;
+      ct+=`<div class="net-spark">`;
+      sparkData.forEach(v=>{
+        const pctH=Math.max(4,Math.round(v/maxVal*36));
+        ct+=`<div class="net-spark-bar" style="height:${pctH}px;background:var(--${cssVar})" title="${v.toLocaleString("fr-FR")}"></div>`;
+      });
+      ct+=`</div>`;
+    }
+
+    // Update form
+    ct+=`<div class="net-update">`;
+    ct+=`<div class="net-update-title">Mettre \u00e0 jour les stats</div>`;
+    ct+=`<div class="net-update-grid">`;
+    net.metrics.forEach(m=>{
+      ct+=`<div class="net-update-field"><label>${NET_METRIC_LABELS[m]||m}</label><input class="net-input" data-pid="${tid}" data-metric="${m}" value="${pStats[m]||""}" placeholder="0"></div>`;
+    });
+    ct+=`<div class="net-update-field"><label>Sant\u00e9</label><select class="net-health-sel" data-pid="${tid}">`;
+    ["unknown","healthy","warning","danger"].forEach(v=>{ct+=`<option value="${v}"${pHealth===v?" selected":""}>${NET_HEALTH_LABELS[v]}</option>`;});
+    ct+=`</select></div>`;
+    ct+=`<button class="net-save-btn" data-save="${tid}">Sauver</button>`;
+    ct+=`</div></div>`;
+
+    ct+=`</div>`; // net-section tracking
+  }
+
+  // === STATS ROW from blueprint ===
+  if(g.stats&&g.stats.length>0){
+    ct+=`<div class="net-section">`;
+    ct+=`<div class="net-section-title">Objectifs</div>`;
+    ct+=`<div class="net-stats-row">`;
+    g.stats.forEach(s=>{
+      ct+=`<div class="net-stat-box"><div class="net-stat-box-val" style="${titleColor}">${s.v}</div><div class="net-stat-box-lbl">${s.l}</div></div>`;
+    });
+    ct+=`</div></div>`;
+  }
+
+  // === KNOWLEDGE CARDS from blueprint ===
+  ct+=`<div class="net-section">`;
+  ct+=`<div class="net-section-title">Guide \u2014 Blueprint</div>`;
+  g.cards.forEach(card=>{
+    const tagCls=card.tag==="warn"?"warn":card.tag==="tip"?"tip":"data";
+    const tagLabel=card.tag==="warn"?"ATTENTION":card.tag==="tip"?"ASTUCE":"DONN\u00c9ES";
+    ct+=`<div class="net-kcard">`;
+    ct+=`<div class="net-kcard-title">${card.title} <span class="net-kcard-tag ${tagCls}">${tagLabel}</span></div>`;
+    ct+=card.content;
+    ct+=`</div>`;
+  });
+  ct+=`</div>`;
+
+  // === TASKS THIS WEEK (platforms only) ===
+  if(isP){
     const tasks=[];
     for(let d=0;d<7;d++)PLAN[d].forEach((t,i)=>{
-      if(t.p!==pid)return;
+      if(t.p!==tid)return;
       if(prodFilterSeries&&t.f!==prodFilterSeries)return;
       const sd=getPrepSteps(prep,d,i);
       const isPub=!!pub[d+"_"+i];
@@ -1742,54 +2110,74 @@ function renderNetworkView(pc){
       const prog=prepProgress(prep,d,i);
       tasks.push({d,i,t,sd,isPub,allDone,prog});
     });
-    if(!tasks.length)continue;
-
-    const done=tasks.filter(t=>t.allDone).length;
-    const published=tasks.filter(t=>t.isPub).length;
-
-    h+=`<div style="margin-bottom:20px">`;
-    h+=`<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;padding:10px 14px;background:var(--bg-surface);border:1px solid var(--border);border-radius:var(--radius)">`;
-    h+=`<div class="gauge-icon ${pl.cls}" style="width:28px;height:28px;border-radius:7px">${ICONS[pid]}</div>`;
-    h+=`<div style="flex:1"><div style="font-size:15px;font-weight:700">${pl.name}</div>`;
-    h+=`<div style="font-size:11px;color:var(--text-3)">${tasks.length} contenus \u00b7 ${done} pr\u00eat${done>1?"s":""} \u00b7 ${published} publi\u00e9${published>1?"s":""}</div></div>`;
-    // Progress bar
-    const pct=tasks.length>0?Math.round(done/tasks.length*100):0;
-    const barCol=pct>=75?"var(--green)":pct>=40?"var(--amber)":"var(--red)";
-    h+=`<div style="font-size:18px;font-weight:800;color:${barCol};min-width:40px;text-align:right">${pct}%</div>`;
-    h+=`</div>`;
-
-    // Task list for this platform
-    h+=`<div style="display:flex;flex-direction:column;gap:6px;padding-left:4px">`;
-    tasks.forEach(tk=>{
-      const s=tk.t.f?SERIES[tk.t.f]:null;
-      const fmtTag=s?`<span class="fmt-tag" style="background:${s.color}20;color:${s.color}">${s.name}</span>`:"";
-      const isToday=isCur&&tk.d===tIdx;
-      const isPast=isCur&&tk.d<tIdx;
-      let statusHtml="";
-      if(tk.isPub)statusHtml='<span class="task-badge pub">Publi\u00e9</span>';
-      else if(tk.allDone)statusHtml='<span class="task-badge ready">Pr\u00eat</span>';
-      else if(tk.prog.done>0)statusHtml=`<span class="task-badge wip">${tk.prog.done}/${tk.prog.total}</span>`;
-
-      h+=`<div class="kb-card ${pl.cls}" data-d="${tk.d}" data-i="${tk.i}" style="margin-bottom:0;border-left-width:3px${isToday?";border-color:var(--accent)":""}${isPast?";opacity:0.5":""}">`;
-      h+=`<div class="kb-card-top">`;
-      h+=`<div class="kb-card-lbl">${tk.t.l}</div>${fmtTag}`;
-      h+=`<div class="kb-card-day" style="margin-left:auto">${DAYS[tk.d]}${isToday?" \u2022":""}</div>`;
-      h+=statusHtml;
-      h+=`</div>`;
-      // Step dots
-      h+=`<div class="kb-card-dots" style="margin-top:4px">`;
-      tk.sd.forEach(st=>{h+=`<div class="kb-card-dot${st?" on":""}"></div>`;});
-      h+=`</div>`;
-      const nk=tk.d+"_"+tk.i;
-      if(notes[nk])h+=`<div class="kb-card-note">${notes[nk].substring(0,50)}</div>`;
-      h+=`</div>`;
-    });
-    h+=`</div></div>`;
+    if(tasks.length>0){
+      const done=tasks.filter(t=>t.allDone).length;
+      const published=tasks.filter(t=>t.isPub).length;
+      ct+=`<div class="net-section">`;
+      ct+=`<div class="net-section-title">Production cette semaine \u2014 ${tasks.length} contenus \u00b7 ${done} pr\u00eat${done>1?"s":""} \u00b7 ${published} publi\u00e9${published>1?"s":""}</div>`;
+      ct+=`<div style="display:flex;flex-direction:column;gap:4px">`;
+      tasks.forEach(tk=>{
+        const s=tk.t.f?SERIES[tk.t.f]:null;
+        const fmtTag=s?`<span class="fmt-tag" style="background:${s.color}20;color:${s.color}">${s.name}</span>`:"";
+        const isToday=isCur&&tk.d===tIdx;
+        const isPast=isCur&&tk.d<tIdx;
+        let statusHtml="";
+        if(tk.isPub)statusHtml='<span class="task-badge pub">Publi\u00e9</span>';
+        else if(tk.allDone)statusHtml='<span class="task-badge ready">Pr\u00eat</span>';
+        else if(tk.prog.done>0)statusHtml=`<span class="task-badge wip">${tk.prog.done}/${tk.prog.total}</span>`;
+        ct+=`<div class="kb-card ${pl.cls}" data-d="${tk.d}" data-i="${tk.i}" style="margin-bottom:0;border-left-width:3px${isToday?";border-color:var(--accent)":""}${isPast?";opacity:0.5":""}">`;
+        ct+=`<div class="kb-card-top"><div class="kb-card-lbl">${tk.t.l}</div>${fmtTag}`;
+        ct+=`<div class="kb-card-day" style="margin-left:auto">${DAYS[tk.d]}${isToday?" \u2022":""}</div>${statusHtml}</div>`;
+        ct+=`<div class="kb-card-dots" style="margin-top:4px">`;
+        tk.sd.forEach(st=>{ct+=`<div class="kb-card-dot${st?" on":""}"></div>`;});
+        ct+=`</div>`;
+        const nk=tk.d+"_"+tk.i;
+        if(notes[nk])ct+=`<div class="kb-card-note">${notes[nk].substring(0,50)}</div>`;
+        ct+=`</div>`;
+      });
+      ct+=`</div></div>`;
+    }
   }
 
-  pc.innerHTML=h;
+  ct+=`</div>`; // net-content
 
-  // Click to focus
+  // Assemble layout
+  pc.innerHTML=`<div class="net-layout">${sb}${ct}</div>`;
+
+  // --- EVENT LISTENERS ---
+
+  // Tab clicks
+  pc.querySelectorAll(".net-tab").forEach(tab=>{
+    tab.addEventListener("click",()=>{
+      netActiveTab=tab.dataset.ntab;
+      renderNetworkView(pc);
+    });
+  });
+
+  // Save button
+  pc.querySelectorAll(".net-save-btn").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      const pid=btn.dataset.save;
+      const st=loadNetStats();
+      if(!st[pid])st[pid]={};
+      pc.querySelectorAll(`.net-input[data-pid="${pid}"]`).forEach(inp=>{
+        const v=parseInt(inp.value)||0;
+        if(v>0)st[pid][inp.dataset.metric]=v;
+      });
+      saveNetStats(st);
+      const sel=pc.querySelector(`.net-health-sel[data-pid="${pid}"]`);
+      if(sel){const h2=loadNetHealth();h2[pid]=sel.value;saveNetHealth(h2);}
+      const hist=loadNetHistory();
+      const entry={pid,date:new Date().toISOString().split("T")[0],...st[pid]};
+      const ex=hist.findIndex(e=>e.pid===pid&&e.date===entry.date);
+      if(ex>=0)hist[ex]=entry;else hist.push(entry);
+      saveNetHistory(hist);
+      btn.textContent="\u2713";btn.style.background="var(--green)";
+      setTimeout(()=>{btn.textContent="Sauver";btn.style.background="";renderNetworkView(pc);},800);
+    });
+  });
+
+  // Task card clicks
   pc.querySelectorAll(".kb-card").forEach(el=>{
     el.addEventListener("click",()=>{
       focusD=+el.dataset.d;focusI=+el.dataset.i;
@@ -2080,6 +2468,7 @@ function renderBankView(pc){
 }
 
 render();
+
 
 // ============================================
 // SYNC PANEL — Events & Init
